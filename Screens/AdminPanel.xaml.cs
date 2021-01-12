@@ -41,6 +41,7 @@ namespace SimpleScada.Screens
 
             using (var db = new SimpleScadaContext())
             {
+                // Write Users from database to viewList on Admin Panel
                 var users = db.Users.OrderBy(p => p.Id);
                 foreach (var user in users)
                 {
@@ -57,6 +58,17 @@ namespace SimpleScada.Screens
             MainScreen.adminPanel.Close();
         }
 
+        private void userList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedStockObject = userList.SelectedItem as Users;
+            usernameTxt.Text = selectedStockObject.User;
+            passwordTxt.Text = selectedStockObject.Password;
+            levelTxt.Text = selectedStockObject.Level.ToString();
+        }
+
+        // CRUD
+
+        // Add new user
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             using (var db = new SimpleScadaContext())
@@ -66,14 +78,6 @@ namespace SimpleScada.Screens
                 db.SaveChanges();
 
             };
-        }
-
-        private void userList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var selectedStockObject = userList.SelectedItem as Users;
-            usernameTxt.Text = selectedStockObject.User;
-            passwordTxt.Text = selectedStockObject.Password;
-            levelTxt.Text = selectedStockObject.Level.ToString();
         }
 
         private void editButton_Click(object sender, RoutedEventArgs e)
