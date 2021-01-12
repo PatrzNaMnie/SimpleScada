@@ -23,6 +23,7 @@ namespace SimpleScada.Screens
     {
         public static Login loginScreen;
         public static AdminPanel adminPanel;
+        DateTime actualTime;
 
         private Timer _timer;
         public MainScreen()
@@ -40,8 +41,10 @@ namespace SimpleScada.Screens
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
+            actualTime = DateTime.Now;
+            Dispatcher.Invoke(new Action(() => { usernameLabel.Content = Login.operatorName; ; }));
+            Dispatcher.Invoke(new Action(() => { dateAndTimeLabel.Content = actualTime; ; }));
             
-            Dispatcher.Invoke(new Action(() => { labelLevel.Content = Login.securityLevel.ToString(); ; }));
             if (Login.securityLevel == 3)
             {
                 Dispatcher.Invoke(new Action(() => { adminPanelButton.Visibility = Visibility.Visible; ; }));

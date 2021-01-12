@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:SimpleScada.Screens.Views"
         xmlns:viewmodels="clr-namespace:SimpleScada.Screens.VIewModels"
         mc:Ignorable="d"
-        Title="SimpleScada" Height="1080" Width="1916"
+        Title="SimpleScada" Height="864" Width="1536"
         Background="#FFD8DBE2" WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" MaxWidth="1920" MaxHeight="1080">
 
     <Window.Resources>
@@ -27,13 +27,13 @@
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
 
-        <DockPanel Name="TopBar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+        <DockPanel Name="TopBar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Rectangle Margin="0,0,0,-0.4" Width="168" Fill="#FF39393A" HorizontalAlignment="Center"/>
-            <Rectangle Margin="0,0,0,-0.4" Width="1214" Fill="White" HorizontalAlignment="Left"></Rectangle>
+            <Rectangle Margin="0,0,0,-0.6" Width="844" Fill="White" HorizontalAlignment="Left"></Rectangle>
             <Rectangle Margin="0,0,0,-0.4" Width="168" Fill="#FF39393A" HorizontalAlignment="Left"/>
         </DockPanel>
 
-        <DockPanel Name="BottomBar" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+        <DockPanel Name="BottomBar" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Button Content="Home" Width="140" Background="#FF39393A" Click="Home_Click" Foreground="LightGray" HorizontalAlignment="Left"/>
             <Button Content="Trend" Width="140" Background="#FF39393A"  Click="Trend_Click" Foreground="LightGray" HorizontalAlignment="Left"/>
             <Button Content="Alarm" Width="140" Background="#FF39393A" Foreground="LightGray" HorizontalAlignment="Left"/>
@@ -44,8 +44,14 @@
             <Button Name="adminPanelButton" Content="Administration Panel" Width="140" Background="#FF39393A" Foreground="LightGray" Click="adminPanel_Click" HorizontalAlignment="Left" HorizontalContentAlignment="Center"/>
         </DockPanel>
 
+        <Label Name="usernameLabel" HorizontalAlignment="Left" Margin="195,91,0,0" VerticalAlignment="Top" Width="134" Foreground="White" Height="25"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="195,65,0,0" VerticalAlignment="Top" Width="134" Foreground="White"/>
+        <Label Content="DateAndTime" HorizontalAlignment="Left" Margin="195,10,0,0" VerticalAlignment="Top" Width="134" Foreground="White"/>
+        <Label Name="dateAndTimeLabel" HorizontalAlignment="Left" Margin="195,41,0,0" VerticalAlignment="Top" Width="134" Foreground="White" Height="25"/>
+        
         <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <Label Name="labelLevel" HorizontalAlignment="Left" Margin="9,31,0,0" VerticalAlignment="Top" Width="178" Foreground="Black" Height="30"/>
+
+
 
         </ContentControl>
     </Grid>
