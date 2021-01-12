@@ -27,9 +27,6 @@ namespace SimpleScada.Screens
         public AdminPanel()
         {
             InitializeComponent();
-            /*_timer = new Timer(250); //Updates every quarter second.
-            _timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            _timer.Enabled = true;*/
             showViewList();
 
 
@@ -37,6 +34,7 @@ namespace SimpleScada.Screens
 
         private void showViewList()
         {
+
             items.Clear();
             using (var db = new SimpleScadaContext())
             {
@@ -47,23 +45,10 @@ namespace SimpleScada.Screens
                     items.Add(new SimpleScada.Users() { Id = user.Id, User = user.User, Password = user.Password, Level = user.Level });
                 }
             }
+            userList.ItemsSource = null;
             userList.ItemsSource = items;
         }
-        /*private void OnTimedEvent(object source, ElapsedEventArgs e)
-        {
-            items.Clear();
-            using (var db = new SimpleScadaContext())
-            {
-                // Write Users from database to viewList on Admin Panel
-                var users = db.Users.OrderBy(p => p.Id);
-                foreach (var user in users)
-                {
-                    items.Add(new SimpleScada.Users() { Id = user.Id, User = user.User, Password = user.Password, Level = user.Level });
-                }
-            }
-            Dispatcher.Invoke(new Action(() => { userList.ItemsSource = items; ; }));
 
-        }*/
 
         private void adminPanelClose_Click(object sender, RoutedEventArgs e)
         {
@@ -75,9 +60,19 @@ namespace SimpleScada.Screens
         private void userList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedStockObject = userList.SelectedItem as Users;
-            usernameTxt.Text = selectedStockObject.User;
-            passwordTxt.Text = selectedStockObject.Password;
-            levelTxt.Text = selectedStockObject.Level.ToString();
+            if (selectedStockObject != null)
+            {
+                usernameTxt.Text = selectedStockObject.User;
+                passwordTxt.Text = selectedStockObject.Password;
+                levelTxt.Text = selectedStockObject.Level.ToString();
+            }
+            else
+            {
+                usernameTxt.Text = "";
+                passwordTxt.Text = "";
+                levelTxt.Text = null;
+            }
+
         }
 
         // -- CRUD -- //
@@ -90,6 +85,7 @@ namespace SimpleScada.Screens
 
                 db.Users.Add(new Users() { User = usernameTxt.Text, Password = passwordTxt.Text, Level = Int32.Parse(levelTxt.Text) });
                 db.SaveChanges();
+
                 showViewList();
             };
         }
@@ -104,6 +100,7 @@ namespace SimpleScada.Screens
                 db.Users.First(p => p.Id == selectedStockObject.Id).Password = passwordTxt.Text;
                 db.Users.First(p => p.Id == selectedStockObject.Id).Level = Int32.Parse(levelTxt.Text);
                 db.SaveChanges();
+
                 showViewList();
             };
         }
@@ -117,6 +114,7 @@ namespace SimpleScada.Screens
                 var newUser = db.Users.First(p => p.Id == selectedStockObject.Id);
                 db.Users.Remove(newUser);
                 db.SaveChanges();
+
                 showViewList();
             };
         }
