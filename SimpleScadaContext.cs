@@ -10,7 +10,9 @@ namespace SimpleScada
     public class SimpleScadaContext : DbContext
     {
         public DbSet<Users> Users { get; set; }
-        DbSet<Data> Data { get; set; }
+        public DbSet<Data> Data { get; set; }
+
+        public DbSet<Variables> Variables { get; set; }
     }
 
     public class Users
