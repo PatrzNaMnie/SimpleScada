@@ -49,7 +49,7 @@
         <Label Content="DateAndTime" HorizontalAlignment="Left" Margin="195,10,0,0" VerticalAlignment="Top" Width="134" Foreground="White"/>
         <Label Name="dateAndTimeLabel" HorizontalAlignment="Left" Margin="195,41,0,0" VerticalAlignment="Top" Width="134" Foreground="White" Height="25"/>
         
-        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        <ContentControl Content="{Binding}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
 
 
 
