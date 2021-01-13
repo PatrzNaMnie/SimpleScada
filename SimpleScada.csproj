@@ -116,6 +116,12 @@
     </Compile>
     <Compile Include="Screens\VIewModels\Home.cs" />
     <Compile Include="Screens\VIewModels\Trend.cs" />
+    <Compile Include="Screens\Views\Alarm.xaml.cs">
+      <DependentUpon>Alarm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Views\AlarmHistory.xaml.cs">
+      <DependentUpon>AlarmHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -148,6 +154,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\MainScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Views\Alarm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Views\AlarmHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

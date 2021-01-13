@@ -27,4 +27,16 @@ namespace SimpleScada
         public string Time { get; set; }
         public string LI1 { get; set; }
     }
+
+    public class Variables
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Source { get; set; }
+        public string MeasuringUnit { get; set; }
+        public string Comment { get; set; }
+        public bool Alarm { get; set; }
+        public string AlarmGroup { get; set; }
+        public string AlarmText { get; set; }
+    }
 }

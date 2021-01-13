@@ -47,12 +47,12 @@ namespace SimpleScada.Screens
             
             if (Login.securityLevel == 3)
             {
-                Dispatcher.Invoke(new Action(() => { adminPanelButton.Visibility = Visibility.Visible; ; }));
+                Dispatcher.Invoke(new Action(() => { adminPanelButton.IsEnabled = true; ; }));
                 
             }
             else
             {
-                Dispatcher.Invoke(new Action(() => { adminPanelButton.Visibility = Visibility.Hidden; ; }));
+                Dispatcher.Invoke(new Action(() => { adminPanelButton.IsEnabled = false; ; }));
             }
         }
 
