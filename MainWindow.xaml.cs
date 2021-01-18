@@ -24,7 +24,7 @@ namespace SimpleScada
 
     public partial class MainWindow : Window
     {
-        public PlcSettings plcConnect = new PlcSettings();
+        public static PlcSettings plcConnect = new PlcSettings();
         public static MainScreen mainScreen;
         private bool lastState;
         public MainWindow()

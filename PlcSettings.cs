@@ -48,5 +48,12 @@ namespace SimpleScada
             else
                 return false;
         }
+
+        public string readBoolValue(string address)
+        {
+            object item = plc.Read(address);
+            return item.ToString();
+        }
+
     }
 }

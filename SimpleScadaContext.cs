@@ -13,6 +13,9 @@ namespace SimpleScada
         public DbSet<Data> Data { get; set; }
 
         public DbSet<Variables> Variables { get; set; }
+
+        public DbSet<AlarmList> AlarmList { get; set; }
+        public DbSet<AlarmHistory> AlarmHistory { get; set; }
     }
 
     public class Users
@@ -40,5 +43,28 @@ namespace SimpleScada
         public bool Alarm { get; set; }
         public string AlarmGroup { get; set; }
         public string AlarmText { get; set; }
+        public double AlarmLimitMin { get; set; }
+        public double AlarmLimitMax { get; set; }
+    }
+
+    public class AlarmList
+    {
+        public int Id { get; set; }
+        public object Icon { get; set; }
+        public string TimeReceived { get; set; }
+        public string VariableName { get; set; }
+        public double AlarmValue { get; set; }
+        public string Text { get; set; }
+        public bool Active { get; set; }
+    }
+
+    public class AlarmHistory
+    {
+        public int Id { get; set; }
+        public string TimeReceived { get; set; }
+        public string TimeAcknowledge { get; set; }
+        public string VariableName { get; set; }
+        public double AlarmValue { get; set; }
+        public string Text { get; set; }
     }
 }

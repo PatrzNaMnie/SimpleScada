@@ -31,7 +31,7 @@ namespace SimpleScada.Screens
             InitializeComponent();
 
 
-            _timer = new Timer(250); //Updates every quarter second.
+            _timer = new Timer(100); //Updates every quarter second.
             _timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer.Enabled = true;
 
@@ -53,6 +53,39 @@ namespace SimpleScada.Screens
             else
             {
                 Dispatcher.Invoke(new Action(() => { adminPanelButton.IsEnabled = false; ; }));
+            }
+
+            // Alarm Handling 
+
+            using (var db = new SimpleScadaContext())
+            {
+                var variables = db.Variables.OrderBy(p => p.Id);
+
+                foreach (var variable in variables)
+                {
+                    if(variable.Alarm == true)
+                    {
+                        AlarmList alarmInList = (AlarmList)db.AlarmList.Where(p => p.VariableName.Equals(variable.Name));
+                        if (variable.MeasuringUnit.Equals("None") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
+                        {
+                            if (alarmInList == null)
+                            {
+                                db.AlarmList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
+                            }
+                        }
+                        else if(variable.MeasuringUnit.Equals("None") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("False"))
+                        {
+                            if(alarmInList != null)
+                            {
+                                db.AlarmHistory.Add(new AlarmHistory() { TimeReceived = alarmInList.TimeReceived, TimeAcknowledge = actualTime.ToLongTimeString(), 
+                                    VariableName = alarmInList.VariableName, Text = alarmInList.Text, AlarmValue = alarmInList.AlarmValue });
+
+                                db.AlarmList.Remove((AlarmList)alarmInList);
+                            }
+                        }
+                    }
+                }
+                
             }
         }
 

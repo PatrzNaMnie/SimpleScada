@@ -45,3 +45,4 @@ C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\SimpleSca
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\SimpleScada.csproj.CopyComplete
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\SimpleScada.exe
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\SimpleScada.pdb
+C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\SimpleScada.csprojAssemblyReference.cache
