@@ -94,7 +94,8 @@
 
 
 
-        <ContentControl Content="{Binding}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBox Name="testTxt" HorizontalAlignment="Left" Height="28" Margin="485,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110"/>
 
 
 
