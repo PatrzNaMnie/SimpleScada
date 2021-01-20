@@ -44,14 +44,14 @@
                 </Grid>
                 <Grid Name="middleTop" Grid.Row="0" Grid.Column="1">
                     <Rectangle Fill="#FFD8DBE2"></Rectangle>
-                    <ListView Margin="0,0,0,0" Name="userList">
+                    <ListView Margin="0,0,0,0" Name="alarmList">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="" Width="40" DisplayMemberBinding="{Binding Icon}" />
-                                <GridViewColumn Header="Time Received" Width="150" DisplayMemberBinding="{Binding receivedTime}" />
-                                <GridViewColumn Header="Variable Name" Width="150" DisplayMemberBinding="{Binding variableName}" />
-                                <GridViewColumn Header="Alarm Value" Width="100" DisplayMemberBinding="{Binding alarmValue}" />
-                                <GridViewColumn Header="Text" Width="288" DisplayMemberBinding="{Binding Level}" />
+                                <GridViewColumn Header="Time Received" Width="150" DisplayMemberBinding="{Binding TimeReceived}" />
+                                <GridViewColumn Header="Variable Name" Width="150" DisplayMemberBinding="{Binding VariableName}" />
+                                <GridViewColumn Header="Alarm Value" Width="100" DisplayMemberBinding="{Binding AlarmValue}" />
+                                <GridViewColumn Header="Text" Width="288" DisplayMemberBinding="{Binding Text}" />
                             </GridView>
                         </ListView.View>
                     </ListView>

@@ -27,12 +27,15 @@ namespace SimpleScada.Screens
 
         private Timer _timer1;
         private Timer _timer2;
+
+        private List<Variables> variables;
+        private List<AlarmList> alarmInList = new List<AlarmList>();
         public MainScreen()
         {
             InitializeComponent();
 
 
-            _timer1 = new Timer(500); //Updates every quarter second.
+            _timer1 = new Timer(500); //Updates every half second.
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer1.Enabled = true;
 
@@ -46,6 +49,8 @@ namespace SimpleScada.Screens
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             actualTime = DateTime.Now;
+
+            // Top bar info labels
             Dispatcher.Invoke(new Action(() => { usernameLabel.Content = Login.operatorName; ; }));
             Dispatcher.Invoke(new Action(() => { dateAndTimeLabel.Content = actualTime; ; }));
 
@@ -67,7 +72,7 @@ namespace SimpleScada.Screens
 
                 using (var db = new SimpleScadaContext())
                 {
-                    var variables = db.Variables.OrderBy(p => p.Id);
+                    variables = db.Variables.OrderBy(p => p.Id).ToList();
 
                     // do tego trzeba by zrobić osobną metodę albo klasę 
 
@@ -75,36 +80,49 @@ namespace SimpleScada.Screens
                     {
                         if(variable.Alarm == true)
                         {
-                            var alarmInList = db.AlarmList.Where(p => p.VariableName.Equals(variable.Name)) as AlarmList;
-
-                            if (variable.MeasuringUnit.Equals("None") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
+                        
+                        
+                            if (alarmInList == null && variable.Type.Equals("BOOL") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
                             {
-                             
-                                if (alarmInList.Active==null)
+                            Dispatcher.Invoke(new Action(() => { testTxt.Text = "true"; ; }));
+                            alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
+
+                            }
+                            else if(alarmInList != null)
+                            {
+                                if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && variable.Type.Equals("BOOL") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
                                 {
-                                    db.AlarmList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
-                                    
+                                    alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
+
+                                }
+                                else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("False"))
+                                {
+                                
+                                var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
+
+                                    db.AlarmHistory.Add(new AlarmHistory()
+                                    {
+                                        TimeReceived = tempAlarm.TimeReceived,
+                                        TimeAcknowledge = actualTime.ToLongTimeString(),
+                                        VariableName = tempAlarm.VariableName,
+                                        Text = tempAlarm.Text,
+                                        AlarmValue = tempAlarm.AlarmValue
+                                    });
+                                    db.SaveChanges();
+
+                                alarmInList.Remove(tempAlarm);
                                 }
                             }
-                            /*else if(variable.MeasuringUnit.Equals("None") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("False"))
-                            {
-                                if (alarmInList.Active == true)
-                                {
-                                db.AlarmHistory.Add(new AlarmHistory() { TimeReceived = alarmInList.TimeReceived, TimeAcknowledge = actualTime.ToLongTimeString(), 
-                                        VariableName = alarmInList.VariableName, Text = alarmInList.Text, AlarmValue = alarmInList.AlarmValue });
-
-                                db.AlarmList.Remove(alarmInList);
-                                
-                                }
-                            }*/
+                        
                         }
                     }
-                db.Database.GetType();
-                db.SaveChanges();
 
 
                 }
+            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; ; }));
+            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = alarmInList; ; }));
             
+
         }
 
             private void Home_Click(object sender, RoutedEventArgs e)
