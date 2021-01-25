@@ -39,7 +39,7 @@ namespace SimpleScada.Screens
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer1.Enabled = true;
 
-            _timer2 = new Timer(250); //Updates every quarter second.
+            _timer2 = new Timer(500); //Updates every quarter second.
             _timer2.Elapsed += new ElapsedEventHandler(OnTimedEvent2);
             _timer2.Enabled = true;
 
@@ -98,7 +98,7 @@ namespace SimpleScada.Screens
                                 else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("False"))
                                 {
                                 
-                                var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
+                                    var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
 
                                     db.AlarmHistory.Add(new AlarmHistory()
                                     {
@@ -110,7 +110,7 @@ namespace SimpleScada.Screens
                                     });
                                     db.SaveChanges();
 
-                                alarmInList.Remove(tempAlarm);
+                                    alarmInList.Remove(tempAlarm);
                                 }
                             }
                         
