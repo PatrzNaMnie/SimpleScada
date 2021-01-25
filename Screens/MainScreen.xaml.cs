@@ -82,53 +82,12 @@ namespace SimpleScada.Screens
 
                     // do tego trzeba by zrobić osobną metodę albo klasę 
 
-                    foreach (var variable in variables)
-                    {
-                        if(variable.Alarm == true)
-                        {
-                        
-                        
-                            if (alarmInList == null && variable.Type.Equals("BOOL") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
-                            {
-                            alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
-                            }
-                            else if(alarmInList != null)
-                            {
-                                if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && variable.Type.Equals("BOOL") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
-                                {
-                                    alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
-
-                                }
-                                else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("False"))
-                                {
-                                
-                                    var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
-
-                                    using (var db = new SimpleScadaContext())
-                                    {
-                                        db.AlarmHistory.Add(new AlarmHistory()
-                                        {
-                                            TimeReceived = tempAlarm.TimeReceived,
-                                            TimeAcknowledge = actualTime.ToLongTimeString(),
-                                            VariableName = tempAlarm.VariableName,
-                                            Text = tempAlarm.Text,
-                                            AlarmValue = tempAlarm.AlarmValue
-                                        });
-                                        db.SaveChanges();
-                                    }
-
-                                    alarmInList.Remove(tempAlarm);
-                                }
-                            }
-                        
-                        }
-                    }
 
 
                 
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; ; }));
-            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = alarmInList; ; }));
+            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.alarmHandling(actualTime, variables); ; }));
             
 
         }
