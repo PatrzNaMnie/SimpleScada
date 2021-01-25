@@ -1,4 +1,6 @@
-﻿using SimpleScada.Screens.VIewModels;
+﻿
+using Ganss.Excel;
+using SimpleScada.Screens.VIewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace SimpleScada.Screens
 {
     /// <summary>
@@ -28,12 +31,16 @@ namespace SimpleScada.Screens
         private Timer _timer1;
         private Timer _timer2;
 
-        private List<Variables> variables;
+        private List<Variables> variables = new List<Variables>();
+        private ReadVariables rV = new ReadVariables();
         private List<AlarmList> alarmInList = new List<AlarmList>();
+
         public MainScreen()
         {
             InitializeComponent();
 
+            // Read variables from Variables.xlsx file (Excel/Vairables.xlsl)
+            variables.AddRange(rV.readVar());
 
             _timer1 = new Timer(500); //Updates every half second.
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
@@ -70,9 +77,8 @@ namespace SimpleScada.Screens
 
                 // Alarm Handling 
 
-                using (var db = new SimpleScadaContext())
-                {
-                    variables = db.Variables.OrderBy(p => p.Id).ToList();
+                
+                    //variables = db.Variables.OrderBy(p => p.Id).ToList();
 
                     // do tego trzeba by zrobić osobną metodę albo klasę 
 
@@ -84,7 +90,6 @@ namespace SimpleScada.Screens
                         
                             if (alarmInList == null && variable.Type.Equals("BOOL") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
                             {
-                            Dispatcher.Invoke(new Action(() => { testTxt.Text = "true"; ; }));
                             alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
                             }
@@ -100,15 +105,18 @@ namespace SimpleScada.Screens
                                 
                                     var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
 
-                                    db.AlarmHistory.Add(new AlarmHistory()
+                                    using (var db = new SimpleScadaContext())
                                     {
-                                        TimeReceived = tempAlarm.TimeReceived,
-                                        TimeAcknowledge = actualTime.ToLongTimeString(),
-                                        VariableName = tempAlarm.VariableName,
-                                        Text = tempAlarm.Text,
-                                        AlarmValue = tempAlarm.AlarmValue
-                                    });
-                                    db.SaveChanges();
+                                        db.AlarmHistory.Add(new AlarmHistory()
+                                        {
+                                            TimeReceived = tempAlarm.TimeReceived,
+                                            TimeAcknowledge = actualTime.ToLongTimeString(),
+                                            VariableName = tempAlarm.VariableName,
+                                            Text = tempAlarm.Text,
+                                            AlarmValue = tempAlarm.AlarmValue
+                                        });
+                                        db.SaveChanges();
+                                    }
 
                                     alarmInList.Remove(tempAlarm);
                                 }
@@ -118,7 +126,7 @@ namespace SimpleScada.Screens
                     }
 
 
-                }
+                
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; ; }));
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = alarmInList; ; }));
             

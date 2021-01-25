@@ -94,12 +94,24 @@
 
 
 
-        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBox Name="testTxt" HorizontalAlignment="Left" Height="28" Margin="485,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110"/>
-
-
-
-        </ContentControl>
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <ListView Margin="314,118.6,278,272" Name="variablesList" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="20" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Source" Width="100" DisplayMemberBinding="{Binding Source}" />
+                    <GridViewColumn Header="Type" Width="100" DisplayMemberBinding="{Binding Type}" />
+                    <GridViewColumn Header="MeasuringUnit" Width="100" DisplayMemberBinding="{Binding MeasuringUnit}" />
+                    <GridViewColumn Header="Comment" Width="100" DisplayMemberBinding="{Binding Comment}" />
+                    <GridViewColumn Header="Alarm" Width="100" DisplayMemberBinding="{Binding Alarm}" />
+                    <GridViewColumn Header="AlarmGroup" Width="100" DisplayMemberBinding="{Binding AlarmGroup}" />
+                    <GridViewColumn Header="AlarmText" Width="100" DisplayMemberBinding="{Binding AlarmText}" />
+                    <GridViewColumn Header="AlarmLimitMin" Width="100" DisplayMemberBinding="{Binding AlarmLimitMin}" />
+                    <GridViewColumn Header="AlarmLimitMax" Width="100" DisplayMemberBinding="{Binding AlarmLimitMax}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 
 
