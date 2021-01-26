@@ -46,11 +46,11 @@ namespace SimpleScada.Screens
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer1.Enabled = true;
 
-            _timer2 = new Timer(500); //Updates every quarter second.
+            _timer2 = new Timer(250); //Updates every quarter second.
             _timer2.Elapsed += new ElapsedEventHandler(OnTimedEvent2);
             _timer2.Enabled = true;
 
-
+            
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -58,6 +58,7 @@ namespace SimpleScada.Screens
             actualTime = DateTime.Now;
 
             // Top bar info labels
+
             Dispatcher.Invoke(new Action(() => { usernameLabel.Content = Login.operatorName; ; }));
             Dispatcher.Invoke(new Action(() => { dateAndTimeLabel.Content = actualTime; ; }));
 
@@ -74,20 +75,13 @@ namespace SimpleScada.Screens
 
         private void OnTimedEvent2(object source, ElapsedEventArgs e)
         {
-
+            actualTime = DateTime.Now;
+            Dispatcher.Invoke(new Action(() => { Value.Text = MainWindow.plcConnect.readRealValue("DB1.DBD6").ToString();}));
+            
                 // Alarm Handling 
-
                 
-                    //variables = db.Variables.OrderBy(p => p.Id).ToList();
-
-                    // do tego trzeba by zrobić osobną metodę albo klasę 
-
-
-
-
-                
-            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; ; }));
-            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.alarmHandling(actualTime, variables); ; }));
+            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null;}));
+            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.alarmHandling(actualTime, variables);}));
             
 
         }

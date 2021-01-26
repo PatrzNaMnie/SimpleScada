@@ -48,7 +48,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="" Width="40" DisplayMemberBinding="{Binding Icon}" />
-                                <GridViewColumn Header="Time Received" Width="150" DisplayMemberBinding="{Binding TimeReceived}" />
+                                <GridViewColumn Header="Date and Time Received" Width="150" DisplayMemberBinding="{Binding TimeReceived}" />
                                 <GridViewColumn Header="Variable Name" Width="150" DisplayMemberBinding="{Binding VariableName}" />
                                 <GridViewColumn Header="Alarm Value" Width="100" DisplayMemberBinding="{Binding AlarmValue}" />
                                 <GridViewColumn Header="Text" Width="288" DisplayMemberBinding="{Binding Text}" />
@@ -94,7 +94,9 @@
 
 
 
-        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBox Name ="Value" HorizontalAlignment="Left" Height="57" Margin="442,194,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="184" FontSize="18"/>
+        </ContentControl>
     </Grid>
 
 
