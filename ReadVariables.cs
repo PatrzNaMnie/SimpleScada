@@ -9,13 +9,14 @@ namespace SimpleScada
 {
     public class ReadVariables
     {
-        private IEnumerable<Variables> people;
+        private IEnumerable<Variables> variables;
+
 
         public IEnumerable<Variables> readVar()
         {
             var filename = AppDomain.CurrentDomain.BaseDirectory + "//Excel/Variables.xlsx";
-            people = new ExcelMapper(filename).Fetch<Variables>();
-            return people;
+            variables = new ExcelMapper(filename).Fetch<Variables>();
+            return variables;
         }
 
 

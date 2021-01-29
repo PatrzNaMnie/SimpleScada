@@ -156,6 +156,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataCollection.cs" />
     <Compile Include="Migrations\202101082306492_InitialCreate.cs" />
     <Compile Include="Migrations\202101082306492_InitialCreate.designer.cs">
       <DependentUpon>202101082306492_InitialCreate.cs</DependentUpon>

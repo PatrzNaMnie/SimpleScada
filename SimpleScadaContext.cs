@@ -12,6 +12,9 @@ namespace SimpleScada
         public DbSet<Users> Users { get; set; }
         public DbSet<Data> Data { get; set; }
 
+        public DbSet<DataCollect> DataCollects { get; set; }
+        public DbSet<MeasuringPoint> MeasuringPoint { get; set; }
+
         public DbSet<Variables> Variables { get; set; }
 
         public DbSet<AlarmList> AlarmList { get; set; }
@@ -30,7 +33,24 @@ namespace SimpleScada
     {
         public int Id { get; set; }
         public string Time { get; set; }
-        public string LI1 { get; set; }
+        public string Date { get; set; }
+        public string MeasuringPoin { get; set; }
+        public string Value { get; set; }
+
+    }
+
+    public class DataCollect
+    {
+        public int Id { get; set; }
+
+        public List<MeasuringPoint> MeasuringPoint { get; set; }
+    }
+
+    public class MeasuringPoint
+    {
+        public int Id { get; set; }
+        public string Time { get; set; }
+        public string Value { get; set; }
     }
 
     public class Variables

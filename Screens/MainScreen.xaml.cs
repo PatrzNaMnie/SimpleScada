@@ -34,10 +34,12 @@ namespace SimpleScada.Screens
         private List<Variables> variables = new List<Variables>();
         private ReadVariables rV = new ReadVariables();
         private List<AlarmList> alarmInList = new List<AlarmList>();
-
+        private DataCollection dataCollection;
         public MainScreen()
         {
             InitializeComponent();
+
+            dataCollection = new DataCollection(variables);
 
             // Read variables from Variables.xlsx file (Excel/Vairables.xlsl)
             variables.AddRange(rV.readVar());
@@ -99,6 +101,7 @@ namespace SimpleScada.Screens
         private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
             _timer1.Enabled = false;
+            dataCollection.turnOff();
             MainWindow.mainScreen.Close();
            App.Current.MainWindow.Show();
            
