@@ -66,6 +66,7 @@ namespace SimpleScada
         public string AlarmText { get; set; }
         public double AlarmLimitMin { get; set; }
         public double AlarmLimitMax { get; set; }
+        public string Historian { get; set; }
     }
 
     public class AlarmList

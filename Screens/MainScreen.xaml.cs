@@ -34,17 +34,16 @@ namespace SimpleScada.Screens
         private List<Variables> variables = new List<Variables>();
         private ReadVariables rV = new ReadVariables();
         private List<AlarmList> alarmInList = new List<AlarmList>();
-        private DataCollection dataCollection;
         public MainScreen()
         {
             InitializeComponent();
 
-            dataCollection = new DataCollection(variables);
+            
 
             // Read variables from Variables.xlsx file (Excel/Vairables.xlsl)
             variables.AddRange(rV.readVar());
 
-            _timer1 = new Timer(500); //Updates every half second.
+            _timer1 = new Timer(1000); //Updates every half second.
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer1.Enabled = true;
 
@@ -73,17 +72,19 @@ namespace SimpleScada.Screens
             {
                 Dispatcher.Invoke(new Action(() => { adminPanelButton.IsEnabled = false; ; }));
             }
+
+            //Dispatcher.Invoke(new Action(() => { Value.Text = MainWindow.plcConnect.readRealValue("DB1.DBD6").ToString();}));
+
+            MainWindow.plcConnect.dataMonitor(actualTime, variables);
+            // Alarm Handling 
+
+            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; }));
+            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.getAlarmList(); }));
         }
 
         private void OnTimedEvent2(object source, ElapsedEventArgs e)
         {
-            actualTime = DateTime.Now;
-            Dispatcher.Invoke(new Action(() => { Value.Text = MainWindow.plcConnect.readRealValue("DB1.DBD6").ToString();}));
-            
-                // Alarm Handling 
-                
-            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null;}));
-            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.alarmHandling(actualTime, variables);}));
+
             
 
         }
@@ -101,7 +102,7 @@ namespace SimpleScada.Screens
         private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
             _timer1.Enabled = false;
-            dataCollection.turnOff();
+            MainWindow.plcConnect.turnOffDataCollection();
             MainWindow.mainScreen.Close();
            App.Current.MainWindow.Show();
            

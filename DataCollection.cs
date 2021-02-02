@@ -11,15 +11,11 @@ namespace SimpleScada
     public class DataCollection
     {
         DateTime actualTime;
-        private string LI1;
-        private string LI2;
-        private string FI1;
 
-        private bool stopCollectData;
         private List<Data> data = new List<Data>();
 
 
-        public DataCollection(List<Variables> variables)
+        /*public DataCollection(List<Variables> variables)
         {
             stopCollectData = true;
             
@@ -40,11 +36,27 @@ namespace SimpleScada
                 }
 
             });
+        }*/
+
+        public void collectData(DateTime actualTime, Variables variable)
+        {
+            try
+            {
+                if (variable.Historian.Equals("True"))
+                {
+                    data.Add(new Data() { Date = actualTime.ToShortDateString(), Time = actualTime.ToLongTimeString(), MeasuringPoin = variable.Name, Value = MainWindow.plcConnect.readRealValue(variable.Source).ToString() });
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "Warning");
+            }
+
+            
         }
 
         public void turnOff()
         {
-            stopCollectData = false;
             using (var db = new SimpleScadaContext())
             {
 

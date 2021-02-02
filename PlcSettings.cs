@@ -13,6 +13,7 @@ namespace SimpleScada
         private Plc plc = null;
         private List<AlarmList> alarmInList = new List<AlarmList>();
         private List<Variables> variables = new List<Variables>();
+        private DataCollection dataCollection = new DataCollection();
 
 
         public enum dataTypes
@@ -104,33 +105,41 @@ namespace SimpleScada
             catch (S7.Net.PlcException ex)
             {
 
-                MessageBox.Show(ex.Message, "Information");
+                MessageBox.Show(ex.Message, "Warning");
                 return "False";
             }
         }
 
-        public IEnumerable<AlarmList> alarmHandling(DateTime actualTime , IEnumerable<Variables> variables)
+        public void dataMonitor(DateTime actualTime, IEnumerable<Variables> variables)
         {
             foreach (var variable in variables)
             {
+                dataCollection.collectData(actualTime, variable);
+                alarmHandling(actualTime, variable);
+            }
+        }
+
+        public void alarmHandling(DateTime actualTime , Variables variable)
+        {
+
                 if (variable.Alarm == true)
                 {
                     switch (variable.Type)
                     {
                         case "BOOL":
-                            if (alarmInList == null && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
+                            if (alarmInList == null && readBoolValue(variable.Source).Equals("True"))
                             {
                                 alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString()+ " " +actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
                             }
                             else if (alarmInList != null)
                             {
-                                if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
+                                if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && readBoolValue(variable.Source).Equals("True"))
                                 {
                                     alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
                                 }
-                                else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("False"))
+                                else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && readBoolValue(variable.Source).Equals("False"))
                                 {
 
                                     var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
@@ -152,20 +161,20 @@ namespace SimpleScada
                                 }
                             }
                             break;
-                        case "REAL":
-                            if (alarmInList == null && Convert.ToDouble(MainWindow.plcConnect.readBoolValue(variable.Source)) > variable.AlarmLimitMin)
+                        /*case "REAL":
+                            if (alarmInList == null && Convert.ToDouble(readBoolValue(variable.Source)) > variable.AlarmLimitMin)
                             {
                                 alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
                             }
                             else if (alarmInList != null)
                             {
-                                if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && Convert.ToDouble(MainWindow.plcConnect.readBoolValue(variable.Source)) > variable.AlarmLimitMin)
+                                if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && Convert.ToDouble(readBoolValue(variable.Source)) > variable.AlarmLimitMin)
                                 {
                                     alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
                                 }
-                                else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && Convert.ToDouble(MainWindow.plcConnect.readBoolValue(variable.Source)) < variable.AlarmLimitMin)
+                                else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && Convert.ToDouble(readBoolValue(variable.Source)) < variable.AlarmLimitMin)
                                 {
 
                                     var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
@@ -186,49 +195,23 @@ namespace SimpleScada
                                     alarmInList.Remove(tempAlarm);
                                 }
                             }
-                            break;
+                            break;*/
 
                         default:
                             break;
                     }
 
-                    /*if (alarmInList == null && variable.Type.Equals("BOOL") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
-                    {
-                        alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
-
-                    }
-                    else if (alarmInList != null)
-                    {
-                        if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && variable.Type.Equals("BOOL") && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("True"))
-                        {
-                            alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
-
-                        }
-                        else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && MainWindow.plcConnect.readBoolValue(variable.Source).Equals("False"))
-                        {
-
-                            var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
-
-                            using (var db = new SimpleScadaContext())
-                            {
-                                db.AlarmHistory.Add(new AlarmHistory()
-                                {
-                                    TimeReceived = tempAlarm.TimeReceived,
-                                    TimeAcknowledge = actualTime.ToLongTimeString(),
-                                    VariableName = tempAlarm.VariableName,
-                                    Text = tempAlarm.Text,
-                                    AlarmValue = tempAlarm.AlarmValue
-                                });
-                                db.SaveChanges();
-                            }
-
-                            alarmInList.Remove(tempAlarm);
-                        }
-                    }*/
-
                 }
-            }
+        }
+
+        public IEnumerable<AlarmList> getAlarmList()
+        {
             return alarmInList;
+        }
+
+        public void turnOffDataCollection()
+        {
+            dataCollection.turnOff();
         }
 
     }

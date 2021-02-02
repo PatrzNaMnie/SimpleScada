@@ -88,11 +88,11 @@ namespace SimpleScada.Screens.Views
                 }
             });*/
 
-            Task.Run(() =>
+            /*Task.Run(() =>
             {
                 drawChart(trend1, 0);
                 drawChart(trend2, 1);
-            });
+            });*/
 
             DataContext = this;
         }
