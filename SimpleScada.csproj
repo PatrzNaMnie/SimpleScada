@@ -172,6 +172,8 @@
     <Compile Include="Screens\MainScreen.xaml.cs">
       <DependentUpon>MainScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\VIewModels\Alarm.cs" />
+    <Compile Include="Screens\VIewModels\AlarmHistory.cs" />
     <Compile Include="Screens\VIewModels\Home.cs" />
     <Compile Include="Screens\VIewModels\Trend.cs" />
     <Compile Include="Screens\Views\Alarm.xaml.cs">

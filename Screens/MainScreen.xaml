@@ -17,6 +17,9 @@
         <DataTemplate x:Name="TrendView" DataType="{x:Type viewmodels:Trend}">
             <views:Trend DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="AlarmView" DataType="{x:Type viewmodels:Alarm}">
+            <views:Alarm DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
 
 
@@ -94,8 +97,8 @@
 
 
 
-        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBox Name ="Value" HorizontalAlignment="Left" Height="57" Margin="442,194,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="184" FontSize="18"/>
+        <ContentControl Content="{Binding}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            
         </ContentControl>
     </Grid>
 

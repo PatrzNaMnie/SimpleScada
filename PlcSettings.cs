@@ -43,7 +43,7 @@ namespace SimpleScada
 
 
             }
-            catch (Exception ex)
+            catch (S7.Net.PlcException ex)
             {
 
                 MessageBox.Show(ex.Message, "Information");
