@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleScada.Screens.VIewModels
 {
-    class AlarmHistory
+    class HistoryAlarm
     {
     }
 }

@@ -20,7 +20,6 @@ C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\A
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Login.g.cs
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\MainScreen.g.cs
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\Alarm.g.cs
-C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\AlarmHistory.g.cs
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\Home.g.cs
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\Login.g.cs
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\Trend.g.cs
@@ -33,7 +32,6 @@ C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\A
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Login.baml
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\MainScreen.baml
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\Alarm.baml
-C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\AlarmHistory.baml
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\Home.baml
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\Login.baml
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\Trend.baml
@@ -82,3 +80,5 @@ C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\bin\Debug\System.Te
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\bin\Debug\System.ValueTuple.xml
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\bin\Debug\Excel\Variables.xlsx
+C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\HistoryAlarm.g.cs
+C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\HistoryAlarm.baml

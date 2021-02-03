@@ -17,16 +17,17 @@ using System.Windows.Shapes;
 namespace SimpleScada.Screens.Views
 {
     /// <summary>
-    /// Interaction logic for Alarm.xaml
+    /// Interaction logic for HistoryAlarm.xaml
     /// </summary>
-    public partial class Alarm : UserControl
+    public partial class HistoryAlarm : UserControl
     {
         private Timer _timer1;
-        public Alarm()
+        private List<AlarmHistory> alarmHistory = new List<AlarmHistory>();
+        public HistoryAlarm()
         {
             InitializeComponent();
 
-            _timer1 = new Timer(100); //Updates every half second.
+            _timer1 = new Timer(1000); //Updates every half second.
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer1.Enabled = true;
         }
@@ -35,9 +36,15 @@ namespace SimpleScada.Screens.Views
         {
 
             // Top bar info labels
+            using (var db = new SimpleScadaContext())
+            {
+                alarmHistory.Clear();
+                alarmHistory.AddRange((IEnumerable<AlarmHistory>)db.AlarmHistory.ToList());
+            }
 
-            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; }));
-            Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.getAlarmList(); }));
+            Dispatcher.Invoke(new Action(() => { alarmHistoryList.ItemsSource = null; }));
+            Dispatcher.Invoke(new Action(() => { alarmHistoryList.ItemsSource = alarmHistory; }));
+
         }
     }
 }

@@ -104,7 +104,7 @@ namespace SimpleScada.Screens
             _timer1.Enabled = false;
             MainWindow.plcConnect.turnOffDataCollection();
             MainWindow.mainScreen.Close();
-           App.Current.MainWindow.Show();
+            App.Current.MainWindow.Show();
            
         }
 
@@ -124,6 +124,16 @@ namespace SimpleScada.Screens
         {
             adminPanel = new AdminPanel();
             adminPanel.Show();
+        }
+
+        private void Alarm_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Alarm();
+        }
+
+        private void AlarmHistory_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new HistoryAlarm();
         }
     }
 }

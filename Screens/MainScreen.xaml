@@ -20,6 +20,10 @@
         <DataTemplate x:Name="AlarmView" DataType="{x:Type viewmodels:Alarm}">
             <views:Alarm DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="AlarmHistoryView" DataType="{x:Type viewmodels:HistoryAlarm}">
+            <views:HistoryAlarm DataContext="{Binding}"/>
+        </DataTemplate>
+
     </Window.Resources>
 
 
@@ -67,27 +71,13 @@
 
             </Grid>
 
-            <!--<Rectangle Margin="0,0,0,-0.4" Width="168" Fill="#FF39393A" HorizontalAlignment="Center"/>
-            <ListView Margin="0,0,0,0.4" Name="userList" SelectionChanged="userList_SelectionChanged" Width="787">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="" Width="40" DisplayMemberBinding="{Binding Icon}" />
-                        <GridViewColumn Header="Time Received" Width="150" DisplayMemberBinding="{Binding receivedTime}" />
-                        <GridViewColumn Header="Variable Name" Width="150" DisplayMemberBinding="{Binding variableName}" />
-                        <GridViewColumn Header="Alarm Value" Width="100" DisplayMemberBinding="{Binding alarmValue}" />
-                        <GridViewColumn Header="Text" Width="345" DisplayMemberBinding="{Binding Level}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Rectangle Margin="0,0,0,-0.4" Width="168" Fill="#FF39393A" HorizontalAlignment="Left"/>-->
-
         </DockPanel>
 
         <DockPanel Name="BottomBar" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Button Content="Home" Width="140" Background="#FF39393A" Click="Home_Click" Foreground="LightGray" HorizontalAlignment="Left"/>
             <Button Content="Trend" Width="140" Background="#FF39393A"  Click="Trend_Click" Foreground="LightGray" HorizontalAlignment="Left"/>
-            <Button Content="Alarm" Width="140" Background="#FF39393A" Foreground="LightGray" HorizontalAlignment="Left"/>
-            <Button Content="Alarm History"  Width="140" Background="#FF39393A" Foreground="LightGray" HorizontalAlignment="Left"/>
+            <Button Content="Alarm" Width="140" Background="#FF39393A" Foreground="LightGray" HorizontalAlignment="Left" Click="Alarm_Click"/>
+            <Button Content="Alarm History"  Width="140" Background="#FF39393A" Foreground="LightGray" HorizontalAlignment="Left" Click="AlarmHistory_Click"/>
             <Button Content="Login" Width="140" Background="#FF39393A" Foreground="LightGray" HorizontalAlignment="Left" Click="Login_Click"/>
             <Button Content="Logout" Width="140" Background="#FF39393A" Foreground="LightGray" HorizontalAlignment="Left" Click="logOut_Click"/>
             <Button Content="Disconnect" Width="140" Background="#FF39393A" Foreground="LightGray" Click="Disconnect_Click" HorizontalAlignment="Left" HorizontalContentAlignment="Center"/>
