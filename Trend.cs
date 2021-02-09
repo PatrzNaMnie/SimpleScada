@@ -23,6 +23,8 @@ namespace SimpleScada
         public  List<string> Labels { get; set; }
         public Trend(string Title, int timeStamp, int sampleTime)
         {
+
+
             SeriesCollection = new SeriesCollection
             {
                 
@@ -63,6 +65,7 @@ namespace SimpleScada
                     }
                 }
             });
+
         }
 
     }

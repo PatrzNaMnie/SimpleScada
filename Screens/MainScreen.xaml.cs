@@ -34,6 +34,7 @@ namespace SimpleScada.Screens
         private List<Variables> variables = new List<Variables>();
         private ReadVariables rV = new ReadVariables();
         private List<AlarmList> alarmInList = new List<AlarmList>();
+
         public MainScreen()
         {
             InitializeComponent();
@@ -73,11 +74,11 @@ namespace SimpleScada.Screens
                 Dispatcher.Invoke(new Action(() => { adminPanelButton.IsEnabled = false; ; }));
             }
 
-            //Dispatcher.Invoke(new Action(() => { Value.Text = MainWindow.plcConnect.readRealValue("DB1.DBD6").ToString();}));
 
+            // Data monitor
             MainWindow.plcConnect.dataMonitor(actualTime, variables);
-            // Alarm Handling 
 
+            // Alarm Handling 
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; }));
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.getAlarmList(); }));
         }

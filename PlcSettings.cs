@@ -83,7 +83,7 @@ namespace SimpleScada
             catch (S7.Net.PlcException ex)
             {
 
-                MessageBox.Show(ex.Message, "Information");
+                MessageBox.Show(ex.Message, "readRealValue");
                 return 0;
             }
         }
@@ -105,7 +105,7 @@ namespace SimpleScada
             catch (S7.Net.PlcException ex)
             {
 
-                MessageBox.Show(ex.Message, "Warning");
+                MessageBox.Show(ex.Message, "readBoolValue");
                 return "False";
             }
         }
@@ -212,6 +212,11 @@ namespace SimpleScada
         public void turnOffDataCollection()
         {
             dataCollection.turnOff();
+        }
+
+        public List<Data> getData()
+        {
+            return dataCollection.getData();
         }
 
     }

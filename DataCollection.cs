@@ -50,7 +50,7 @@ namespace SimpleScada
             }
             catch(Exception e)
             {
-                MessageBox.Show(e.Message, "Warning");
+                MessageBox.Show(e.Message, "collectData");
             }
 
             
@@ -58,12 +58,12 @@ namespace SimpleScada
 
         public void turnOff()
         {
-            using (var db = new SimpleScadaContext())
-            {
+                using (var db = new SimpleScadaContext())
+                {
 
                     db.Data.AddRange(data);
                     db.SaveChanges();
-            }
+                }
             
         }
 
@@ -71,6 +71,7 @@ namespace SimpleScada
         {
             return data;
         }
+
 
     }
 }

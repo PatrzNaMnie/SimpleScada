@@ -2,9 +2,12 @@
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows;
 using System.Windows.Controls;
 
 
@@ -21,23 +24,28 @@ namespace SimpleScada.Screens.Views
         public static List<string> Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
 
+        private List<Data> data = new List<Data>();
+
         private int counter;
 
-        static SimpleScada.Trend trend1;
-        static SimpleScada.Trend trend2;
+
+
+        private System.Timers.Timer _timer1;
 
         public Trend()
         {
 
             InitializeComponent();
 
-            trend1 = new SimpleScada.Trend("Series 1", 60, 1000);
-            trend2 = new SimpleScada.Trend("Series 2", 60, 1000);
+
+            _timer1 = new System.Timers.Timer(1000); //Updates every half second.
+            _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+
+
+
 
             SeriesCollection = new SeriesCollection
             {
-                new LineSeries{ },
-                new LineSeries{ }
                /* new LineSeries
                 {
                     Title = "Series 1",
@@ -47,52 +55,40 @@ namespace SimpleScada.Screens.Views
 
             };
 
-            /*SeriesCollection.Add(new LineSeries
-            {
-                Title = "Series 2",
-                Values = new ChartValues<double> { 0, 0, 0, 0, 0 },
-                LineSmoothness = 1, //0: straight lines, 1: really smooth lines
-            });*/
 
-
-
-            //Labels = new List<string> { actualTime.AddSeconds(-40).ToString(), actualTime.AddSeconds(-30).ToString(),
-            //actualTime.AddSeconds(-20).ToString(), actualTime.AddSeconds(-10).ToString(), actualTime.ToString()};
             Labels = new List<string>{};
             YFormatter = value => value.ToString("C");
 
-            //modifying the series collection will animate and update the chart
-
-
-            /*Task.Run(() =>
+            SeriesCollection.Add(new LineSeries
             {
-                var r = new Random();
-                while (true)
+                Title = "LI_1",
+                Values = new ChartValues<double> { }
+            });
+
+            Task.Run(() =>
+            {
+
+                using (var db = new SimpleScadaContext())
                 {
-                    counter = counter + 1;
-                    Thread.Sleep(1000);
-                    actualTime = DateTime.Now;
-                    _trend += (r.NextDouble() > 0.3 ? 1 : -1) * r.Next(0, 5);
-                    if (counter > 10)
-                    {
-                        Labels.Remove(Labels[0].ToString());
-                        Labels.Add(actualTime.ToString());
-                        SeriesCollection[0].Values.Remove(Convert.ToDouble(SeriesCollection[0].Values[0].ToString()));
-                        SeriesCollection[0].Values.Add(_trend);
-                    }
-                    else
-                    {
-                        Labels.Add(actualTime.ToString());
-                        SeriesCollection[0].Values.Add(_trend);
-                    }
-                }
-            });*/
 
-            /*Task.Run(() =>
-            {
-                drawChart(trend1, 0);
-                drawChart(trend2, 1);
-            });*/
+                    data = db.Data.Where(p => p.MeasuringPoin.Equals("LI_1")).OrderByDescending(p => p.Id).Take(60).ToList();
+
+                }
+                foreach (var item in data)
+                {
+
+                    SeriesCollection[0].Values.Add(Convert.ToDouble(item.Value));
+                    Labels.Add(item.Time);
+
+                }
+                Labels.Reverse();
+                _timer1.Enabled = true;
+            });
+
+
+
+
+
 
             DataContext = this;
         }
@@ -104,6 +100,45 @@ namespace SimpleScada.Screens.Views
 
         }
 
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
 
+            var dataCollected = MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_1")).Last();
+            SeriesCollection[0].Values.Remove(Convert.ToDouble(SeriesCollection[0].Values[0].ToString()));
+            Labels.Remove(Labels[0].ToString());
+            SeriesCollection[0].Values.Add(Convert.ToDouble(dataCollected.Value));
+            Labels.Add(dataCollected.Time);
+
+
+        }
+
+        private void LI_1_Click(object sender, RoutedEventArgs e)
+        {
+
+            SeriesCollection.Add(new LineSeries
+            {
+                Title = "LI_1",
+                Values = new ChartValues<double> { }
+            });
+
+
+            Task.Run(() =>
+            {
+
+                using (var db = new SimpleScadaContext())
+                {
+                    data = db.Data.Where(p => p.MeasuringPoin.Equals("LI_1")).OrderByDescending(p => p.Id).Take(60).ToList();
+                }
+
+            });
+
+            foreach (var item in data)
+            {
+
+                SeriesCollection[0].Values.Add(Convert.ToDouble(item.Value));
+                Labels.Add(item.Time);
+
+            }
+        }
     }
 }
