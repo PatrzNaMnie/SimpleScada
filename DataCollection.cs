@@ -15,6 +15,13 @@ namespace SimpleScada
 
         private List<Data> data = new List<Data>();
 
+        public DataCollection()
+        {
+            using (var db = new SimpleScadaContext())
+            {
+                var test = db.AlarmHistory.FirstOrDefault();
+            }
+        }
 
         /*public DataCollection(List<Variables> variables)
         {
@@ -58,12 +65,15 @@ namespace SimpleScada
 
         public void turnOff()
         {
+            Task.Run(() =>
+            {
+                
                 using (var db = new SimpleScadaContext())
                 {
-
                     db.Data.AddRange(data);
                     db.SaveChanges();
                 }
+            });
             
         }
 

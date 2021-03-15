@@ -39,7 +39,8 @@ namespace SimpleScada.Screens
         {
             InitializeComponent();
 
-            
+
+
 
             // Read variables from Variables.xlsx file (Excel/Vairables.xlsl)
             variables.AddRange(rV.readVar());
@@ -60,8 +61,14 @@ namespace SimpleScada.Screens
             actualTime = DateTime.Now;
 
             // Top bar info labels
-
-            Dispatcher.Invoke(new Action(() => { usernameLabel.Content = Login.operatorName; ; }));
+            if (Login.operatorName == null)
+            {
+                Dispatcher.Invoke(new Action(() => { usernameLabel.Content = "Spectactor"; ; }));
+            }
+            else
+            {
+                Dispatcher.Invoke(new Action(() => { usernameLabel.Content = Login.operatorName; ; }));
+            }
             Dispatcher.Invoke(new Action(() => { dateAndTimeLabel.Content = actualTime; ; }));
 
             if (Login.securityLevel == 3)
@@ -73,10 +80,8 @@ namespace SimpleScada.Screens
             {
                 Dispatcher.Invoke(new Action(() => { adminPanelButton.IsEnabled = false; ; }));
             }
-
-
-            // Data monitor
-            MainWindow.plcConnect.dataMonitor(actualTime, variables);
+                // Data monitor
+                MainWindow.plcConnect.dataMonitor(actualTime, variables);
 
             // Alarm Handling 
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; }));

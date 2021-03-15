@@ -45,8 +45,8 @@ namespace SimpleScada
             }
             catch (S7.Net.PlcException ex)
             {
-
-                MessageBox.Show(ex.Message, "Information");
+                
+                MessageBox.Show(ex.Message + ex.ErrorCode, "Information");
             }
         }
 
@@ -65,6 +65,7 @@ namespace SimpleScada
                 return false;
         }
 
+        // Read real value from input address
         public double readRealValue(string address)
         {
             try
@@ -88,6 +89,7 @@ namespace SimpleScada
             }
         }
 
+        // Read boolean value from input address
         public string readBoolValue(string address)
         {
             try
@@ -110,6 +112,7 @@ namespace SimpleScada
             }
         }
 
+        // Cyclic data monitor. Reads all variables from file variables.xlsx and perform certain operations on them.
         public void dataMonitor(DateTime actualTime, IEnumerable<Variables> variables)
         {
             foreach (var variable in variables)

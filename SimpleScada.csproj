@@ -191,8 +191,8 @@
     <Compile Include="Screens\Views\Trend.xaml.cs">
       <DependentUpon>Trend.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Views\TrendMeasuringPoints.cs" />
     <Compile Include="SimpleScadaContext.cs" />
-    <Compile Include="Trend.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
