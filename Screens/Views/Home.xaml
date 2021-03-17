@@ -6,8 +6,102 @@
              xmlns:local="clr-namespace:SimpleScada.Screens.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type ProgressBar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid x:Name="TemplateRoot">
+                            <Border Margin="5,0,5,0"  BorderThickness="0,1.2,0,1.2"  BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="True"    Background="{TemplateBinding Background}"/>
+                            <Rectangle  x:Name="PART_Track"/>
+                            <Grid x:Name="PART_Indicator" ClipToBounds="True" HorizontalAlignment="Left">
+                                <Grid x:Name="Indicator">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle Margin="0,0,-3,0" Grid.Column="1" Fill="{TemplateBinding Foreground}" />
+                                    <Ellipse Height="{Binding Path=Width,RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="2" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" Width="8" Fill="{TemplateBinding Foreground}"/>
+                                    <Ellipse Height="{Binding Path=Width,RelativeSource={RelativeSource TemplatedParent}}"  StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" Width="10" Fill="{TemplateBinding Foreground}"/>
+                                    <Rectangle Margin="5,0,0,0" Fill="{TemplateBinding Foreground}"></Rectangle>
+                                    <Border  Grid.Column="1"  BorderBrush="{TemplateBinding BorderBrush}" Margin="-5,0,-2,0" BorderThickness="0,1,0,1"/>
+                                </Grid>
+                                <Grid  x:Name="Animation">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse Height="{Binding Path=Width,RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="2" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" Width="8" Fill="{TemplateBinding Foreground}"/>
+                                    <Rectangle   Grid.Column="1"  RenderTransformOrigin="0.5,0.5">
+                                        <Rectangle.RenderTransform>
+                                            <ScaleTransform/>
+                                        </Rectangle.RenderTransform>
+                                        <Rectangle.Fill>
+                                            <VisualBrush Stretch="None">
+                                                <VisualBrush.Visual>
+                                                    <Grid Background="{TemplateBinding Foreground}">
+                                                        <TextBlock  Grid.ColumnSpan="2"  Text="{Binding Path=Value,RelativeSource={RelativeSource TemplatedParent}}" RenderTransformOrigin=".5,.5" Foreground="Black">
+                                                            <TextBlock.RenderTransform>
+                                                                <RotateTransform Angle="90"></RotateTransform>
+                                                            </TextBlock.RenderTransform>
+                                                        </TextBlock>
+                                                    </Grid>
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <Ellipse Height="{Binding Path=Width,RelativeSource={RelativeSource TemplatedParent}}"  StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" Width="10" Fill="{TemplateBinding Foreground}"/>
+                                    <Rectangle   Margin="5,0,0,0" Fill="{TemplateBinding Foreground}"></Rectangle>
+                                    <Border  Grid.Column="1"  BorderBrush="{TemplateBinding BorderBrush}" Margin="-5,0,-2,0" BorderThickness="0,1,0,1"/>
+                                </Grid>
+                            </Grid>
+                            <Ellipse HorizontalAlignment="Right" Height="{Binding Path=Width,RelativeSource={RelativeSource TemplatedParent}}"  StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" Width="8" Fill="{TemplateBinding Background}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsIndeterminate" Value="True">
+                                <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background="#FFE9E9E9">
-        <Button Background="Silver" Content="Test" Margin="255,156,439,239.6"></Button>
-        <ProgressBar Name="progBar" HorizontalAlignment="Left" Height="27" Margin="543,183,0,0" VerticalAlignment="Top" Width="132" Minimum="0.0" Maximum="100.0" Value="{Binding Value}"/>
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="151" Margin="42,139,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image x:Name="ImgUV1" Source="{Binding StateUV1}" HorizontalAlignment="Left" Height="92" Margin="79,90,0,0" VerticalAlignment="Top" Width="95" />
+        <ProgressBar Name="TankLvlBar" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="174,118,516,181.6" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="150" />
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="169,264,0,0" VerticalAlignment="Top" Width="121" RadiusX="5" RadiusY="5">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Content="Tank T1" HorizontalAlignment="Left" Margin="174,239,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="66"/>
+        <Button Background="{x:Null}"  Margin="79,90,626,267.6" Click="UV1_Open_Station"/>
     </Grid>
 </UserControl>

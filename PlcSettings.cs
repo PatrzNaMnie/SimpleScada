@@ -89,6 +89,30 @@ namespace SimpleScada
             }
         }
 
+        // Read int value from input address
+        public int readIntValue(string address)
+        {
+            try
+            {
+                if (plc != null)
+                {
+                    var item = (ushort)plc.Read(address);
+                    int result = item;
+                    return result;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (S7.Net.PlcException ex)
+            {
+
+                MessageBox.Show(ex.Message, "readRealValue");
+                return 0;
+            }
+        }
+
         // Read boolean value from input address
         public string readBoolValue(string address)
         {
@@ -222,5 +246,9 @@ namespace SimpleScada
             return dataCollection.getData();
         }
 
+        public List<State> GetState()
+        {
+            return dataCollection.getState();
+        }
     }
 }

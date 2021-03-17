@@ -82,3 +82,5 @@ C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\bin\Debug\System.Va
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\bin\Debug\Excel\Variables.xlsx
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\HistoryAlarm.g.cs
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\Views\HistoryAlarm.baml
+C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\ValveStation.g.cs
+C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\obj\Debug\Screens\ValveStation.baml

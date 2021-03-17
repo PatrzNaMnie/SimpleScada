@@ -15,6 +15,7 @@ namespace SimpleScada
 
         private List<Data> data = new List<Data>();
 
+        private List<State> states = new List<State>();
         public DataCollection()
         {
             using (var db = new SimpleScadaContext())
@@ -54,6 +55,16 @@ namespace SimpleScada
                 {
                     data.Add(new Data() { Date = actualTime.ToShortDateString(), Time = actualTime.ToLongTimeString(), MeasuringPoin = variable.Name, Value = MainWindow.plcConnect.readRealValue(variable.Source).ToString() });
                 }
+
+                // Collect states of valves and pumps from PLC and add it to list
+                if (variable.Type.Equals("INT") && !states.Any(p => p.Name.Equals(variable.Name)))
+                {
+                    states.Add(new State() { Name = variable.Name, Value = MainWindow.plcConnect.readIntValue(variable.Source) });
+                }
+                else if (variable.Type.Equals("INT") && states.Any(p => p.Name.Equals(variable.Name)))
+                {
+                    states.Find(p => p.Name.Equals(variable.Name)).Value = MainWindow.plcConnect.readIntValue(variable.Source);
+                }
             }
             catch(Exception e)
             {
@@ -81,6 +92,12 @@ namespace SimpleScada
         {
             return data;
         }
+
+        public List<State> getState()
+        {
+            return states;
+        }
+
 
 
     }

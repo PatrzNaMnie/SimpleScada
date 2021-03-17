@@ -108,6 +108,7 @@ namespace SimpleScada.Screens
         private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
             _timer1.Enabled = false;
+            Views.Home.stopTimer();
             MainWindow.plcConnect.turnOffDataCollection();
             MainWindow.mainScreen.Close();
             App.Current.MainWindow.Show();

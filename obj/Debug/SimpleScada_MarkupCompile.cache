@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Programowanie\WPF\ProjektScadaMes\SimpleScada\SimpleScada\App.xaml
-92147236474
+101576922600
 
-26-823642255
+28-2079698799
 45873444770
-MainWindow.xaml;Screens\AdminPanel.xaml;Screens\Login.xaml;Screens\MainScreen.xaml;Screens\Views\Alarm.xaml;Screens\Views\HistoryAlarm.xaml;Screens\Views\Home.xaml;Screens\Views\Login.xaml;Screens\Views\Trend.xaml;
+MainWindow.xaml;Screens\AdminPanel.xaml;Screens\Login.xaml;Screens\MainScreen.xaml;Screens\ValveStation.xaml;Screens\Views\Alarm.xaml;Screens\Views\HistoryAlarm.xaml;Screens\Views\Home.xaml;Screens\Views\Login.xaml;Screens\Views\Trend.xaml;
 
-True
+False
 
