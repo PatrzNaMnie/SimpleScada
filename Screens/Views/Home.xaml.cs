@@ -24,7 +24,8 @@ namespace SimpleScada.Screens.Views
         private static Timer _timer1;
 
         
-        private List<ValveStation> valveStations;
+        private List<ValveStation> valveStations = new List<ValveStation>();
+        private StateControl stateControl = new StateControl();
         public Home()
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace SimpleScada.Screens.Views
 
             Dispatcher.Invoke(new Action(() => { TankLvlBar.Value = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_1")).Last().Value); }));
 
-            var uriSource = new Uri(setValveState(MainWindow.plcConnect.GetState().Find(p => p.Name.Equals("UV_1_STATE")).Value));
+            var uriSource = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("UV_1_STATE")).Value));
             Dispatcher.Invoke(new Action(() => { ImgUV1.Source = new BitmapImage(uriSource); }));
         }
 
@@ -53,38 +54,19 @@ namespace SimpleScada.Screens.Views
             _timer1.Enabled = false;
         }
 
-        private string setValveState(int State)
-        {
-            switch (State)
-            {
-                case 0:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumZamknięty.png";
-
-                case 1: 
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumOtwZam.png";
-
-                case 2:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumOtwarty.png";
-                case 3:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumOtwZam.png";
-
-                case 4:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumAwaria.png";
-
-                default:
-                    return "";
-
-            }
-        }
 
         private void UV1_Open_Station(object sender, RoutedEventArgs e)
         {
-            if (valveStations != null)
+            if (valveStations.Exists(p => p.Name.Equals("UV_1")))
             {
-                valveStations.Clear();
+                valveStations.Find(p => p.Name.Equals("UV_1")).Show();
             }
-            valveStations.Add(new ValveStation(Name = "UV_1"));
-            valveStations.First().Show();
+            else
+            {
+
+                valveStations.Add(new ValveStation(Name = "UV_1"));
+                valveStations.First().Show();
+            }
         }
     }
 }

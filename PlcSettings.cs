@@ -45,7 +45,7 @@ namespace SimpleScada
             }
             catch (S7.Net.PlcException ex)
             {
-                
+
                 MessageBox.Show(ex.Message + ex.ErrorCode, "Information");
             }
         }
@@ -133,6 +133,23 @@ namespace SimpleScada
 
                 MessageBox.Show(ex.Message, "readBoolValue");
                 return "False";
+            }
+        }
+
+        // Write boolean value to input address
+        public void writeBoolValue(string address, object value)
+        {
+            try
+            {
+                if (plc != null)
+                {
+                    plc.Write(address, value);
+                }
+            }
+            catch (S7.Net.PlcException ex)
+            {
+
+                MessageBox.Show(ex.Message, "readBoolValue");
             }
         }
 
@@ -246,9 +263,24 @@ namespace SimpleScada
             return dataCollection.getData();
         }
 
-        public List<State> GetState()
+        public List<State> getState()
         {
             return dataCollection.getState();
+        }
+
+        public List<Mode> getMode()
+        {
+            return dataCollection.getMode();
+        }
+
+        public List<Variables> getVariables()
+        {
+            return variables;
+        }
+
+        public void setVariables(List<Variables> variables)
+        {
+            this.variables = variables;
         }
     }
 }

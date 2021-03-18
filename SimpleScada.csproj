@@ -162,6 +162,7 @@
       <DependentUpon>202101082306492_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Mode.cs" />
     <Compile Include="ReadVariables.cs" />
     <Compile Include="Screens\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
@@ -197,6 +198,7 @@
     <Compile Include="Screens\Views\TrendMeasuringPoints.cs" />
     <Compile Include="SimpleScadaContext.cs" />
     <Compile Include="State.cs" />
+    <Compile Include="StateControl.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

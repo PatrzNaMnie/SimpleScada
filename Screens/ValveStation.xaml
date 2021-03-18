@@ -8,15 +8,21 @@
         Title="Login" Height="300" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
     <Grid>
         <Rectangle HorizontalAlignment="Left" Height="300" Stroke="Black" VerticalAlignment="Top" Width="450" Margin="0,0,-0.4,0" StrokeThickness="3"/>
-        <TextBox Name="txtUsername" HorizontalAlignment="Left" Height="32" Margin="126,51,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="259" Background="#FFDDDDDD" Tag=""/>
-        <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="32" Margin="126,109,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="259" Background="#FFDDDDDD"/>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="126,176,0,0" VerticalAlignment="Top" Width="123" Height="43"/>
-        <Label Content="Username" HorizontalAlignment="Left" Height="32" Margin="10,51,0,0" VerticalAlignment="Top" Width="93"/>
-        <Label Content="Password" HorizontalAlignment="Left" Height="32" Margin="10,109,0,0" VerticalAlignment="Top" Width="93"/>
-        <Label Name="usernameInfo" Content="" HorizontalAlignment="Left" Height="26" Margin="126,83,0,0" VerticalAlignment="Top" Width="259" Foreground="Red"/>
-        <Label Name="passwordInfo" Content="" HorizontalAlignment="Left" Height="26" Margin="126,141,0,0" VerticalAlignment="Top" Width="259" Foreground="Red"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="262,176,0,0" VerticalAlignment="Top" Width="123" Height="43" />
-        <Button Content="X" HorizontalAlignment="Left" Margin="402,10,0,0" VerticalAlignment="Top" Width="38" Height="26" Click="Close_Window" />
+        <TextBox Name="txtStatus" HorizontalAlignment="Left" Height="32" Margin="257,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" Background="#FFDDDDDD" Tag="" TextAlignment="Center" FontSize="16" FontWeight="Bold"/>
+        <TextBox Name="txtMode" HorizontalAlignment="Left" Height="32" Margin="257,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" Background="#FFDDDDDD" FontSize="16" TextAlignment="Center" FontWeight="Bold"/>
+        <Label Content="STATUS" HorizontalAlignment="Left" Height="32" Margin="197,45,0,0" VerticalAlignment="Top" Width="60" FontSize="14"/>
+        <Label Content="MODE" HorizontalAlignment="Left" Height="32" Margin="197,89,0,0" VerticalAlignment="Top" Width="60" FontSize="14"/>
+        <Button Content="X" HorizontalAlignment="Left" Margin="414,6,0,0" VerticalAlignment="Top" Width="26" Height="24" Click="Close_Window" FontWeight="Bold" Background="#FFE88787" />
+        <Image x:Name="ImgUV" Source="{Binding StateUV}" HorizontalAlignment="Left" Height="92" Margin="48,45,0,0" VerticalAlignment="Top" Width="95" />
+        <ToggleButton x:Name="AutoManual" Margin="257,134,23.6,135" Content="MANUAL" Checked="Manual" Unchecked="Auto" Background="#FF343434" Foreground="#FFF0F0F0"></ToggleButton>
+        <ToggleButton x:Name="OnOff" Margin="257,170,23.6,99" Content="ON" Checked="Off" Unchecked="On" Background="#FF343434" Foreground="#FFF0F0F0"/>
+        <Border Name="brdStatus" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="38" Margin="53,141,0,0" Background="Orange">
+            <Label Name="brdStatusTxt" Margin="0.2,0.2,-0.4,-0.4"/>
+        </Border>
+        <Rectangle Name="rctFault" Fill="WHITE" HorizontalAlignment="Left" Height="30" Margin="100,141,0,0" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Width="38"/>
+        <Label Name="stationName" Content="abc" HorizontalAlignment="Left" Height="35" Margin="10,5,0,0" VerticalAlignment="Top" Width="60" FontSize="14" FontWeight="Bold"/>
+        <Label Content="BLOCKADE" HorizontalAlignment="Left" Height="32" Margin="75,237,0,0" VerticalAlignment="Top" Width="83" FontSize="14"/>
+        <Ellipse Name="eliBlockade" HorizontalAlignment="Left" Height="32" Margin="35,237,0,0" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Width="35"/>
 
 
     </Grid>

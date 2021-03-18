@@ -31,7 +31,7 @@ namespace SimpleScada.Screens
         private Timer _timer1;
         private Timer _timer2;
 
-        private List<Variables> variables = new List<Variables>();
+        public List<Variables> variables = new List<Variables>();
         private ReadVariables rV = new ReadVariables();
         private List<AlarmList> alarmInList = new List<AlarmList>();
 
@@ -53,7 +53,7 @@ namespace SimpleScada.Screens
             _timer2.Elapsed += new ElapsedEventHandler(OnTimedEvent2);
             _timer2.Enabled = true;
 
-            
+            MainWindow.plcConnect.setVariables(variables);
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -80,8 +80,9 @@ namespace SimpleScada.Screens
             {
                 Dispatcher.Invoke(new Action(() => { adminPanelButton.IsEnabled = false; ; }));
             }
-                // Data monitor
-                MainWindow.plcConnect.dataMonitor(actualTime, variables);
+
+            // Data monitor
+            MainWindow.plcConnect.dataMonitor(actualTime, variables);
 
             // Alarm Handling 
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; }));

@@ -16,6 +16,8 @@ namespace SimpleScada
         private List<Data> data = new List<Data>();
 
         private List<State> states = new List<State>();
+
+        private List<Mode> modes = new List<Mode>();
         public DataCollection()
         {
             using (var db = new SimpleScadaContext())
@@ -65,6 +67,17 @@ namespace SimpleScada
                 {
                     states.Find(p => p.Name.Equals(variable.Name)).Value = MainWindow.plcConnect.readIntValue(variable.Source);
                 }
+
+                // Collect modes of valves and pumps from PLC and add it to list
+                if (variable.Type.Equals("BOOL") && !modes.Any(p => p.Name.Equals(variable.Name)))
+                {
+                    modes.Add(new Mode() { Name = variable.Name, Value = MainWindow.plcConnect.readBoolValue(variable.Source) });
+
+                }
+                else if (variable.Type.Equals("BOOL") && states.Any(p => p.Name.Equals(variable.Name)))
+                {
+                    modes.Find(p => p.Name.Equals(variable.Name)).Value = MainWindow.plcConnect.readBoolValue(variable.Source);
+                }
             }
             catch(Exception e)
             {
@@ -96,6 +109,11 @@ namespace SimpleScada
         public List<State> getState()
         {
             return states;
+        }
+
+        public List<Mode> getMode()
+        {
+            return modes;
         }
 
 
