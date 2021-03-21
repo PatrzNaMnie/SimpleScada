@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -21,7 +22,7 @@ namespace SimpleScada.Screens.Views
     /// </summary>
     public partial class Home : UserControl
     {
-        private static Timer _timer1;
+        private static System.Timers.Timer _timer1;
 
         
         private List<ValveStation> valveStations = new List<ValveStation>();
@@ -31,7 +32,7 @@ namespace SimpleScada.Screens.Views
             InitializeComponent();
 
 
-            _timer1 = new Timer(250); //Updates every second.
+            _timer1 = new System.Timers.Timer(500); //Updates every second.
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer1.Enabled = true;
             
@@ -47,6 +48,11 @@ namespace SimpleScada.Screens.Views
 
             var uriSource = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("UV_1_STATE")).Value));
             Dispatcher.Invoke(new Action(() => { ImgUV1.Source = new BitmapImage(uriSource); }));
+
+            
+
+           
+
         }
 
         public static void stopTimer()
@@ -67,6 +73,29 @@ namespace SimpleScada.Screens.Views
                 valveStations.Add(new ValveStation(Name = "UV_1"));
                 valveStations.First().Show();
             }
+        }
+
+
+        private void onClick(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
+
+
+        private void enter(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Return)
+            {
+                Task.Run(() =>
+                {
+                    double value = new double();
+                    Dispatcher.Invoke(new Action(() => {  value = double.Parse(testValue.Text, System.Globalization.CultureInfo.InvariantCulture); }));
+                    Dispatcher.Invoke(new Action(() => { MainWindow.plcConnect.writeRealValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals("TEST")).Source, value); }));
+                });
+            }
+            
         }
     }
 }

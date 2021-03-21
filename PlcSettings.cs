@@ -97,7 +97,7 @@ namespace SimpleScada
                 if (plc != null)
                 {
                     var item = (ushort)plc.Read(address);
-                    int result = item;
+                    int result = item.ConvertToShort();
                     return result;
                 }
                 else
@@ -108,7 +108,7 @@ namespace SimpleScada
             catch (S7.Net.PlcException ex)
             {
 
-                MessageBox.Show(ex.Message, "readRealValue");
+                MessageBox.Show(ex.Message, "readIntValue");
                 return 0;
             }
         }
@@ -149,9 +149,30 @@ namespace SimpleScada
             catch (S7.Net.PlcException ex)
             {
 
-                MessageBox.Show(ex.Message, "readBoolValue");
+                MessageBox.Show(ex.Message, "writeBoolValue");
             }
         }
+
+        // Read real value from input address
+        public void writeRealValue(string address, object value)
+        {
+            try
+            {
+                if (plc != null)
+                {
+                    plc.Write(address, value);
+                }
+
+            }
+            catch (S7.Net.PlcException ex)
+            {
+
+                MessageBox.Show(ex.Message, "writeRealValue");
+
+            }
+        }
+
+
 
         // Cyclic data monitor. Reads all variables from file variables.xlsx and perform certain operations on them.
         public void dataMonitor(DateTime actualTime, IEnumerable<Variables> variables)
@@ -163,89 +184,98 @@ namespace SimpleScada
             }
         }
 
-        public void alarmHandling(DateTime actualTime , Variables variable)
+        // Cyclic send data
+        public void sendData(List<WriteData> dataList)
+        {
+            foreach (var item in dataList)
+            {
+                writeBoolValue(item.Address, item.Value);
+            }
+        }
+
+        public void alarmHandling(DateTime actualTime, Variables variable)
         {
 
-                if (variable.Alarm == true)
+            if (variable.Alarm == true)
+            {
+                switch (variable.Type)
                 {
-                    switch (variable.Type)
-                    {
-                        case "BOOL":
-                            if (alarmInList == null && readBoolValue(variable.Source).Equals("True"))
-                            {
-                                alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString()+ " " +actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
+                    case "BOOL":
+                        if (alarmInList == null && readBoolValue(variable.Source).Equals("True"))
+                        {
+                            alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
-                            }
-                            else if (alarmInList != null)
-                            {
-                                if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && readBoolValue(variable.Source).Equals("True"))
-                                {
-                                    alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
-
-                                }
-                                else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && readBoolValue(variable.Source).Equals("False"))
-                                {
-
-                                    var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
-
-                                    using (var db = new SimpleScadaContext())
-                                    {
-                                        db.AlarmHistory.Add(new AlarmHistory()
-                                        {
-                                            TimeReceived = tempAlarm.TimeReceived,
-                                            TimeAcknowledge = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(),
-                                            VariableName = tempAlarm.VariableName,
-                                            Text = tempAlarm.Text,
-                                            AlarmValue = tempAlarm.AlarmValue
-                                        });
-                                        db.SaveChanges();
-                                    }
-
-                                    alarmInList.Remove(tempAlarm);
-                                }
-                            }
-                            break;
-                        /*case "REAL":
-                            if (alarmInList == null && Convert.ToDouble(readBoolValue(variable.Source)) > variable.AlarmLimitMin)
+                        }
+                        else if (alarmInList != null)
+                        {
+                            if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && readBoolValue(variable.Source).Equals("True"))
                             {
                                 alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
                             }
-                            else if (alarmInList != null)
+                            else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && readBoolValue(variable.Source).Equals("False"))
                             {
-                                if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && Convert.ToDouble(readBoolValue(variable.Source)) > variable.AlarmLimitMin)
+
+                                var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
+
+                                using (var db = new SimpleScadaContext())
                                 {
-                                    alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
-
-                                }
-                                else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && Convert.ToDouble(readBoolValue(variable.Source)) < variable.AlarmLimitMin)
-                                {
-
-                                    var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
-
-                                    using (var db = new SimpleScadaContext())
+                                    db.AlarmHistory.Add(new AlarmHistory()
                                     {
-                                        db.AlarmHistory.Add(new AlarmHistory()
-                                        {
-                                            TimeReceived = tempAlarm.TimeReceived,
-                                            TimeAcknowledge = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(),
-                                            VariableName = tempAlarm.VariableName,
-                                            Text = tempAlarm.Text,
-                                            AlarmValue = tempAlarm.AlarmValue
-                                        });
-                                        db.SaveChanges();
-                                    }
-
-                                    alarmInList.Remove(tempAlarm);
+                                        TimeReceived = tempAlarm.TimeReceived,
+                                        TimeAcknowledge = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(),
+                                        VariableName = tempAlarm.VariableName,
+                                        Text = tempAlarm.Text,
+                                        AlarmValue = tempAlarm.AlarmValue
+                                    });
+                                    db.SaveChanges();
                                 }
+
+                                alarmInList.Remove(tempAlarm);
                             }
-                            break;*/
+                        }
+                        break;
+                    /*case "REAL":
+                        if (alarmInList == null && Convert.ToDouble(readBoolValue(variable.Source)) > variable.AlarmLimitMin)
+                        {
+                            alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
-                        default:
-                            break;
-                    }
+                        }
+                        else if (alarmInList != null)
+                        {
+                            if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && Convert.ToDouble(readBoolValue(variable.Source)) > variable.AlarmLimitMin)
+                            {
+                                alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
+                            }
+                            else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && Convert.ToDouble(readBoolValue(variable.Source)) < variable.AlarmLimitMin)
+                            {
+
+                                var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
+
+                                using (var db = new SimpleScadaContext())
+                                {
+                                    db.AlarmHistory.Add(new AlarmHistory()
+                                    {
+                                        TimeReceived = tempAlarm.TimeReceived,
+                                        TimeAcknowledge = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(),
+                                        VariableName = tempAlarm.VariableName,
+                                        Text = tempAlarm.Text,
+                                        AlarmValue = tempAlarm.AlarmValue
+                                    });
+                                    db.SaveChanges();
+                                }
+
+                                alarmInList.Remove(tempAlarm);
+                            }
+                        }
+                        break;*/
+
+                    default:
+                        break;
                 }
+
+            }
         }
 
         public IEnumerable<AlarmList> getAlarmList()
@@ -282,5 +312,15 @@ namespace SimpleScada
         {
             this.variables = variables;
         }
+
+        public void writeArray(S7.Net.Types.DataItem[] dataitems)
+        {
+            Task.Run(() =>
+            {
+                plc.Write(dataitems);
+            });
+        }
+
+
     }
 }

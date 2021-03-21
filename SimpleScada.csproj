@@ -199,6 +199,7 @@
     <Compile Include="SimpleScadaContext.cs" />
     <Compile Include="State.cs" />
     <Compile Include="StateControl.cs" />
+    <Compile Include="WriteData.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

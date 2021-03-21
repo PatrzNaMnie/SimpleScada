@@ -90,7 +90,7 @@
             </Rectangle.Fill>
         </Rectangle>
         <Image x:Name="ImgUV1" Source="{Binding StateUV1}" HorizontalAlignment="Left" Height="92" Margin="79,90,0,0" VerticalAlignment="Top" Width="95" />
-        <ProgressBar Name="TankLvlBar" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="174,118,516,181.6" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="150" />
+        <ProgressBar Name="TankLvlBar" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="174,118,516,181.6" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="150" Width="100"/>
         <Rectangle HorizontalAlignment="Left" Height="4" Margin="169,264,0,0" VerticalAlignment="Top" Width="121" RadiusX="5" RadiusY="5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -102,6 +102,8 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label Content="Tank T1" HorizontalAlignment="Left" Margin="174,239,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="66"/>
-        <Button Background="{x:Null}"  Margin="79,90,626,267.6" Click="UV1_Open_Station"/>
+        <Button Background="{x:Null}"  Margin="79,90,626,267.6" Click="UV1_Open_Station" Height="80" Width="80"/>
+        <Button Content="Button" Name="Test" HorizontalAlignment="Left" Margin="395,244,0,0" VerticalAlignment="Top" Width="75" Click="onClick"/>
+        <TextBox Name="testValue" HorizontalAlignment="Left" Height="23" Margin="548,203,0,0" TextWrapping="Wrap" Text="127.0" VerticalAlignment="Top" Width="120" KeyDown="enter"/>
     </Grid>
 </UserControl>

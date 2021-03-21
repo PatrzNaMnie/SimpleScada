@@ -74,7 +74,7 @@ namespace SimpleScada
                     modes.Add(new Mode() { Name = variable.Name, Value = MainWindow.plcConnect.readBoolValue(variable.Source) });
 
                 }
-                else if (variable.Type.Equals("BOOL") && states.Any(p => p.Name.Equals(variable.Name)))
+                else if (variable.Type.Equals("BOOL") && modes.Any(p => p.Name.Equals(variable.Name)))
                 {
                     modes.Find(p => p.Name.Equals(variable.Name)).Value = MainWindow.plcConnect.readBoolValue(variable.Source);
                 }

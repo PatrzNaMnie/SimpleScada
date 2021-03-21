@@ -31,19 +31,19 @@ namespace SimpleScada.Screens
         private Timer _timer1;
         private Timer _timer2;
 
-        public List<Variables> variables = new List<Variables>();
+        public static List<Variables> variables = new List<Variables>();
         private ReadVariables rV = new ReadVariables();
         private List<AlarmList> alarmInList = new List<AlarmList>();
+
+        public static List<WriteData> writeDataList = new List<WriteData>();
 
         public MainScreen()
         {
             InitializeComponent();
 
-
-
-
             // Read variables from Variables.xlsx file (Excel/Vairables.xlsl)
             variables.AddRange(rV.readVar());
+
 
             _timer1 = new Timer(1000); //Updates every half second.
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
@@ -54,6 +54,12 @@ namespace SimpleScada.Screens
             _timer2.Enabled = true;
 
             MainWindow.plcConnect.setVariables(variables);
+
+            foreach (var item in MainScreen.variables)
+            {
+                if (item.Source.Equals("DB10.DBX12.2") || item.Source.Equals("DB10.DBX12.3") || item.Source.Equals("DB10.DBX12.0") || item.Source.Equals("DB10.DBX12.1"))
+                    writeDataList.Add(new WriteData() { Name = item.Name, Address = item.Source, Value = false });
+            }
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -84,9 +90,17 @@ namespace SimpleScada.Screens
             // Data monitor
             MainWindow.plcConnect.dataMonitor(actualTime, variables);
 
+            // Send data
+            MainWindow.plcConnect.sendData(writeDataList);
+
             // Alarm Handling 
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; }));
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.getAlarmList(); }));
+
+            foreach (var item in writeDataList)
+            {
+                item.Value = false;
+            }
         }
 
         private void OnTimedEvent2(object source, ElapsedEventArgs e)
@@ -96,7 +110,7 @@ namespace SimpleScada.Screens
 
         }
 
-            private void Home_Click(object sender, RoutedEventArgs e)
+         private void Home_Click(object sender, RoutedEventArgs e)
         {
             DataContext = new Home();
         }

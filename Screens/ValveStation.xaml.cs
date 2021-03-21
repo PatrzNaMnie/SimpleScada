@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -20,34 +21,52 @@ namespace SimpleScada.Screens
     /// </summary>
     public partial class ValveStation : Window
     {
-        private static Timer _timer1;
+        private static System.Timers.Timer _timer1;
 
         private StateControl stateControl = new StateControl();
         private string Name { get; set; }
+
+        private List<S7.Net.Types.DataItem> dataItemList = new List<S7.Net.Types.DataItem>();
+        public static List<WriteData> writeDataList = new List<WriteData>();
+        public WriteData writeData = new WriteData();
+
         public ValveStation(string Name)
         {
             InitializeComponent();
 
-            _timer1 = new Timer(250); //Updates every second.
+            _timer1 = new System.Timers.Timer(500); //Updates every second.
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer1.Enabled = true;
 
             stationName.Content = Name;
             this.Name = Name;
+
+            foreach (var item in MainScreen.variables)
+            {
+                if (item.Source.Equals("DB10.DBX12.2") || item.Source.Equals("DB10.DBX12.3"))
+                    writeDataList.Add(new WriteData() { Name = item.Name, Address = item.Source, Value = false });
+            }
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-
-
+            
             var uriSource = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_STATE")).Value));
             Dispatcher.Invoke(new Action(() => { ImgUV.Source = new BitmapImage(uriSource); }));
             Dispatcher.Invoke(new Action(() => { txtStatus.Text = stateControl.setValveTxt(MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_STATE")).Value); }));
-            Dispatcher.Invoke(new Action(() => { txtMode.Text = checkMode(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_MODE")).Value); }));
-            Dispatcher.Invoke(new Action(() => { modeGraphic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_MODE")).Value); }));
-            Dispatcher.Invoke(new Action(() => { faultGrapic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_FAULT")).Value); }));
+            Dispatcher.Invoke(new Action(() => { txtMode.Text = checkMode(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_AM")).Value); }));
+            Dispatcher.Invoke(new Action(() => { modeGraphic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_AM")).Value); }));
+            Dispatcher.Invoke(new Action(() => { faultGraphic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_FAULT")).Value); }));
             Dispatcher.Invoke(new Action(() => { blockadeGraphic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_BLOCKADE")).Value); }));
+            
+            dataItemList.Clear();
+            dataItemList.AddRange(writeData.createDataList(writeDataList));
+            //MainWindow.plcConnect.writeArray(dataItemList.ToArray());
 
+            foreach (var item in writeDataList)
+            {
+                item.Value = false;
+            }
         }
 
 
@@ -56,29 +75,6 @@ namespace SimpleScada.Screens
             this.Hide();
         }
 
-
-        private void Manual(object sender, RoutedEventArgs e)
-        {
-            
-            AutoManual.Content = "AUTO";
-        }
-
-        private void Auto(object sender, RoutedEventArgs e)
-        {
-            AutoManual.Content = "MANUAL";
-        }
-
-        private void Off(object sender, RoutedEventArgs e)
-        {
-            MainWindow.plcConnect.writeBoolValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals(Name + "_OPEN_CLOSE")).Source, true);
-            OnOff.Content = "OFF";
-        }
-
-        private void On(object sender, RoutedEventArgs e)
-        {
-            MainWindow.plcConnect.writeBoolValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals(Name + "_OPEN_CLOSE")).Source, false);
-            OnOff.Content = "ON";
-        }
 
         private string checkMode(string mode)
         {
@@ -106,7 +102,7 @@ namespace SimpleScada.Screens
             }
         }
 
-        private void faultGrapic(string fault)
+        private void faultGraphic(string fault)
         {
             if (fault.Equals("True"))
             {
@@ -128,6 +124,35 @@ namespace SimpleScada.Screens
             {
                 eliBlockade.Fill = Brushes.LightGray;
             }
+        }
+
+        private void autoClick(object sender, RoutedEventArgs e)
+        {
+            sendSignal("_AUTO");
+        }
+
+        private void manualClick(object sender, RoutedEventArgs e)
+        {
+            sendSignal("_MANUAL");
+        }
+
+        private void openClick(object sender, RoutedEventArgs e)
+        {
+            sendSignal("_OPEN");
+        }
+
+        private void closeClick(object sender, RoutedEventArgs e)
+        {
+            sendSignal("_CLOSE");
+        }
+
+        private void sendSignal(string operation)
+        {
+            /*Task.Run(() =>
+            {
+                MainWindow.plcConnect.writeBoolValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals(Name + operation)).Source, true);
+            });*/
+            MainScreen.writeDataList.Find(p => p.Name.Equals(Name + operation)).Value = true;
         }
     }
 }
