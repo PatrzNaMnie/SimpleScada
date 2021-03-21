@@ -26,6 +26,7 @@ namespace SimpleScada.Screens.Views
 
         
         private List<ValveStation> valveStations = new List<ValveStation>();
+        private List<PumpStation> pumpStations = new List<PumpStation>();
         private StateControl stateControl = new StateControl();
         public Home()
         {
@@ -96,6 +97,20 @@ namespace SimpleScada.Screens.Views
                 });
             }
             
+        }
+
+        private void P1_Open_Station(object sender, RoutedEventArgs e)
+        {
+            if (pumpStations.Exists(p => p.Name.Equals("P1")))
+            {
+                pumpStations.Find(p => p.Name.Equals("P1")).Show();
+            }
+            else
+            {
+
+                pumpStations.Add(new PumpStation(Name = "P1"));
+                pumpStations.First().Show();
+            }
         }
     }
 }

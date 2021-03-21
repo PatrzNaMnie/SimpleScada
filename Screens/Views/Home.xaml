@@ -102,8 +102,10 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label Content="Tank T1" HorizontalAlignment="Left" Margin="174,239,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="66"/>
-        <Button Background="{x:Null}"  Margin="79,90,626,267.6" Click="UV1_Open_Station" Height="80" Width="80"/>
+        <Button Background="{x:Null}"  Margin="79,102,641,267.6" Click="UV1_Open_Station" Height="80" Width="80"/>
         <Button Content="Button" Name="Test" HorizontalAlignment="Left" Margin="395,244,0,0" VerticalAlignment="Top" Width="75" Click="onClick"/>
         <TextBox Name="testValue" HorizontalAlignment="Left" Height="23" Margin="548,203,0,0" TextWrapping="Wrap" Text="127.0" VerticalAlignment="Top" Width="120" KeyDown="enter"/>
+        <Image x:Name="ImgP1" Source="{Binding StateP1}" HorizontalAlignment="Left" Height="92" Margin="471,278,0,0" VerticalAlignment="Top" Width="95" />
+        <Button Background="{x:Null}"  Margin="471,278,249,91.6"  Height="80" Width="80" Click="P1_Open_Station"/>
     </Grid>
 </UserControl>

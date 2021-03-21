@@ -196,6 +196,9 @@
       <DependentUpon>Trend.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Views\TrendMeasuringPoints.cs" />
+    <Compile Include="Screens\PumpStation.xaml.cs">
+      <DependentUpon>PumpStation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimpleScadaContext.cs" />
     <Compile Include="State.cs" />
     <Compile Include="StateControl.cs" />
@@ -247,6 +250,10 @@
     <Page Include="Screens\Views\Trend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\PumpStation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

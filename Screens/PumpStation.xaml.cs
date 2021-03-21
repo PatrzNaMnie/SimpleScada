@@ -19,7 +19,7 @@ namespace SimpleScada.Screens
     /// <summary>
     /// Interaction logic for ValveStation.xaml
     /// </summary>
-    public partial class ValveStation : Window
+    public partial class PumpStation : Window
     {
         private static System.Timers.Timer _timer1;
 
@@ -30,7 +30,7 @@ namespace SimpleScada.Screens
         public static List<WriteData> writeDataList = new List<WriteData>();
         public WriteData writeData = new WriteData();
 
-        public ValveStation(string Name)
+        public PumpStation(string Name)
         {
             InitializeComponent();
 
@@ -50,21 +50,29 @@ namespace SimpleScada.Screens
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            // Read valve state
-            var uriSource = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_STATE")).Value));
+            // Read pump state
+            var uriSource = new Uri(stateControl.setPumpImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_STATE")).Value));
             Dispatcher.Invoke(new Action(() => { ImgUV.Source = new BitmapImage(uriSource); }));
-            Dispatcher.Invoke(new Action(() => { txtStatus.Text = stateControl.setValveTxt(MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_STATE")).Value); }));
-            
-            // Read auto/manual mode
-            Dispatcher.Invoke(new Action(() => { txtMode.Text = checkMode(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_AM")).Value); }));
-            Dispatcher.Invoke(new Action(() => { modeGraphic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_AM")).Value); }));
+            Dispatcher.Invoke(new Action(() => { txtStatus.Text = stateControl.setPumpTxt(MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_STATE")).Value); }));
 
-            //Read fault signal
+            // Read auto/manual mode
+            Dispatcher.Invoke(new Action(() => { txtMode.Text = checkMode(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_MODE")).Value); }));
+            Dispatcher.Invoke(new Action(() => { modeGraphic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_MODE")).Value); }));
+
+            // Read fault signal
             Dispatcher.Invoke(new Action(() => { faultGraphic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_FAULT")).Value); }));
 
-            // Read blockade signal
+            //Read blockade signal
             Dispatcher.Invoke(new Action(() => { blockadeGraphic(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals(Name + "_BLOCKADE")).Value); }));
-            
+
+            // Read running time
+            Dispatcher.Invoke(new Action(() => { txtHours.Text = MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_RUN_H")).Value.ToString(); }));
+            Dispatcher.Invoke(new Action(() => { txtMinutes.Text = MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_RUN_M")).Value.ToString(); }));
+            Dispatcher.Invoke(new Action(() => { txtSeconds.Text = MainWindow.plcConnect.getState().Find(p => p.Name.Equals(Name + "_RUN_S")).Value.ToString(); }));
+
+            // Read PV value
+            Dispatcher.Invoke(new Action(() => { txtPV.Text = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals(Name + "_PV")).Last().Value).ToString(); }));
+
             dataItemList.Clear();
             dataItemList.AddRange(writeData.createDataList(writeDataList));
             //MainWindow.plcConnect.writeArray(dataItemList.ToArray());
@@ -142,14 +150,19 @@ namespace SimpleScada.Screens
             sendSignal("_MANUAL");
         }
 
-        private void openClick(object sender, RoutedEventArgs e)
+        private void startClick(object sender, RoutedEventArgs e)
         {
-            sendSignal("_OPEN");
+            sendSignal("_START");
         }
 
-        private void closeClick(object sender, RoutedEventArgs e)
+        private void stopClick(object sender, RoutedEventArgs e)
         {
-            sendSignal("_CLOSE");
+            sendSignal("_STOP");
+        }
+
+        private void resetClick(object sender, RoutedEventArgs e)
+        {
+            sendSignal("_RESET");
         }
 
         private void sendSignal(string operation)
@@ -159,6 +172,19 @@ namespace SimpleScada.Screens
                 MainWindow.plcConnect.writeBoolValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals(Name + operation)).Source, true);
             });*/
             MainScreen.writeDataList.Find(p => p.Name.Equals(Name + operation)).Value = true;
+        }
+
+        private void sendSP(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                Task.Run(() =>
+                {
+                    double value = new double();
+                    Dispatcher.Invoke(new Action(() => { value = double.Parse(txtSP.Text, System.Globalization.CultureInfo.InvariantCulture); }));
+                    Dispatcher.Invoke(new Action(() => { MainWindow.plcConnect.writeRealValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals(Name + "_SP")).Source, value); }));
+                });
+            }
         }
     }
 }

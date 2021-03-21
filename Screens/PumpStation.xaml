@@ -1,0 +1,43 @@
+﻿<Window x:Class="SimpleScada.Screens.PumpStation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleScada.Screens"
+        mc:Ignorable="d"
+        Title="Login" Height="300" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
+    <Grid>
+        <Rectangle HorizontalAlignment="Left" Height="300" Stroke="Black" VerticalAlignment="Top" Width="450" Margin="0,0,-0.4,0" StrokeThickness="3"/>
+        <TextBox Name="txtStatus" HorizontalAlignment="Left" Height="32" Margin="257,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" Background="#FFDDDDDD" Tag="" TextAlignment="Center" FontSize="16" FontWeight="Bold"/>
+        <TextBox Name="txtMode" HorizontalAlignment="Left" Height="32" Margin="257,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" Background="#FFDDDDDD" FontSize="16" TextAlignment="Center" FontWeight="Bold"/>
+        <Label Content="STATUS" HorizontalAlignment="Left" Height="32" Margin="197,45,0,0" VerticalAlignment="Top" Width="60" FontSize="14"/>
+        <Label Content="MODE" HorizontalAlignment="Left" Height="32" Margin="197,89,0,0" VerticalAlignment="Top" Width="60" FontSize="14"/>
+        <Button Content="X" HorizontalAlignment="Left" Margin="414,6,0,0" VerticalAlignment="Top" Width="26" Height="24" Click="Close_Window" FontWeight="Bold" Background="#FFE88787" />
+        <Image x:Name="ImgUV" Source="{Binding StateUV}" HorizontalAlignment="Left" Height="92" Margin="48,45,0,0" VerticalAlignment="Top" Width="95" />
+        <Border Name="brdStatus" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="38" Margin="53,141,0,0" Background="Orange">
+            <Label Name="brdStatusTxt" Margin="0.2,0.2,-0.4,-0.4"/>
+        </Border>
+        <Rectangle Name="rctFault" Fill="WHITE" HorizontalAlignment="Left" Height="30" Margin="100,141,0,0" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Width="38"/>
+        <Label Name="stationName" Content="abc" HorizontalAlignment="Left" Height="35" Margin="10,5,0,0" VerticalAlignment="Top" Width="60" FontSize="14" FontWeight="Bold"/>
+        <Label Content="BLOCKADE" HorizontalAlignment="Left" Height="32" Margin="297,258,0,0" VerticalAlignment="Top" Width="83" FontSize="14"/>
+        <Ellipse Name="eliBlockade" HorizontalAlignment="Left" Height="32" Margin="257,258,0,0" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Width="35"/>
+        <Button Name ="btnAuto" Content="AUTO" HorizontalAlignment="Left" Margin="257,134,0,0" VerticalAlignment="Top" Width="80" Background="#FF343434" Foreground="#FFF0F0F0" Height="31" Click="autoClick"/>
+        <Button Name ="btnManual" Content="MANUAL" HorizontalAlignment="Left" Margin="346,134,0,0" VerticalAlignment="Top" Width="80" Background="#FF343434" Foreground="#FFF0F0F0" Height="31" Click="manualClick"/>
+        <Button Name ="btnStart" Content="START" HorizontalAlignment="Left" Margin="257,170,0,0" VerticalAlignment="Top" Width="80" Background="#FF343434" Foreground="#FFF0F0F0" Height="31" Click="startClick"/>
+        <Button Name ="btnStop" Content="STOP" HorizontalAlignment="Left" Margin="346,170,0,0" VerticalAlignment="Top" Width="80" Background="#FF343434" Foreground="#FFF0F0F0" Height="31" Click="stopClick"/>
+        <TextBox x:Name="txtHours" HorizontalAlignment="Left" Height="32" Margin="25,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" Background="#FFDDDDDD" FontSize="16" TextAlignment="Center" FontWeight="Bold"/>
+        <Label Content="h" HorizontalAlignment="Left" Height="32" Margin="55,203,0,0" VerticalAlignment="Top" Width="20" FontSize="14"/>
+        <TextBox x:Name="txtMinutes" HorizontalAlignment="Left" Height="32" Margin="75,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" Background="#FFDDDDDD" FontSize="16" TextAlignment="Center" FontWeight="Bold"/>
+        <Label Content="m" HorizontalAlignment="Left" Height="32" Margin="105,203,0,0" VerticalAlignment="Top" Width="22" FontSize="14"/>
+        <TextBox x:Name="txtSeconds" HorizontalAlignment="Left" Height="32" Margin="127,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" Background="#FFDDDDDD" FontSize="16" TextAlignment="Center" FontWeight="Bold"/>
+        <Label Content="s" HorizontalAlignment="Left" Height="32" Margin="157,203,0,0" VerticalAlignment="Top" Width="20" FontSize="14"/>
+        <Button x:Name ="btnReset" Content="RESET" HorizontalAlignment="Left" Margin="36,249,0,0" VerticalAlignment="Top" Width="107" Background="#FF343434" Foreground="#FFF0F0F0" Height="21" Click="resetClick"/>
+        <Label Content="Running Time" HorizontalAlignment="Left" Height="27" Margin="25,176,0,0" HorizontalContentAlignment="Center" VerticalAlignment="Top" Width="132" FontSize="14"/>
+        <Label Content="SP" HorizontalAlignment="Left" Height="32" Margin="256,214,0,0" VerticalAlignment="Top" Width="26" FontSize="14"/>
+        <TextBox x:Name="txtSP" HorizontalAlignment="Left" Height="32" Margin="282,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" Background="#FFDDDDDD" FontSize="16" TextAlignment="Center" FontWeight="Bold" KeyDown="sendSP"/>
+        <Label Content="PV" HorizontalAlignment="Left" Height="32" Margin="346,214,0,0" VerticalAlignment="Top" Width="26" FontSize="14"/>
+        <TextBox x:Name="txtPV" HorizontalAlignment="Left" Height="32" Margin="372,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" Background="#FFDDDDDD" FontSize="16" TextAlignment="Center" FontWeight="Bold"/>
+
+
+    </Grid>
+</Window>

@@ -57,7 +57,7 @@ namespace SimpleScada.Screens
 
             foreach (var item in MainScreen.variables)
             {
-                if (item.Source.Equals("DB10.DBX12.2") || item.Source.Equals("DB10.DBX12.3") || item.Source.Equals("DB10.DBX12.0") || item.Source.Equals("DB10.DBX12.1"))
+                if (item.MeasuringUnit.Equals("Send"))
                     writeDataList.Add(new WriteData() { Name = item.Name, Address = item.Source, Value = false });
             }
         }

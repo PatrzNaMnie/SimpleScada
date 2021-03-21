@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleScada.Screens"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
+        Title="Valve_Station" Height="300" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
     <Grid>
         <Rectangle HorizontalAlignment="Left" Height="300" Stroke="Black" VerticalAlignment="Top" Width="450" Margin="0,0,-0.4,0" StrokeThickness="3"/>
         <TextBox Name="txtStatus" HorizontalAlignment="Left" Height="32" Margin="257,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" Background="#FFDDDDDD" Tag="" TextAlignment="Center" FontSize="16" FontWeight="Bold"/>
