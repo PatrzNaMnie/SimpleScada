@@ -35,7 +35,8 @@ namespace SimpleScada.Screens
         private ReadVariables rV = new ReadVariables();
         private List<AlarmList> alarmInList = new List<AlarmList>();
 
-        public static List<WriteData> writeDataList = new List<WriteData>();
+        public static List<WriteBoolData> writeBoolDataList = new List<WriteBoolData>();
+        public static List<WriteRealData> writeRealDataList = new List<WriteRealData>();
 
         public MainScreen()
         {
@@ -55,10 +56,13 @@ namespace SimpleScada.Screens
 
             MainWindow.plcConnect.setVariables(variables);
 
+            // Send variables to collection - need to fix !!
             foreach (var item in MainScreen.variables)
             {
-                if (item.MeasuringUnit.Equals("Send"))
-                    writeDataList.Add(new WriteData() { Name = item.Name, Address = item.Source, Value = false });
+                if (item.MeasuringUnit.Equals("Send") && item.Type.Equals("BOOL"))
+                    writeBoolDataList.Add(new WriteBoolData() { Name = item.Name, Address = item.Source, Value = false });
+                else if (item.MeasuringUnit.Equals("Send") && item.Type.Equals("REAL"))
+                    writeRealDataList.Add(new WriteRealData() { Name = item.Name, Address = item.Source, Value = 0 });
             }
         }
 
@@ -91,16 +95,18 @@ namespace SimpleScada.Screens
             MainWindow.plcConnect.dataMonitor(actualTime, variables);
 
             // Send data
-            MainWindow.plcConnect.sendData(writeDataList);
+            MainWindow.plcConnect.sendBoolData(writeBoolDataList);
+            MainWindow.plcConnect.sendRealData(writeRealDataList);
 
             // Alarm Handling 
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = null; }));
             Dispatcher.Invoke(new Action(() => { alarmList.ItemsSource = MainWindow.plcConnect.getAlarmList(); }));
 
-            foreach (var item in writeDataList)
+            foreach (var item in writeBoolDataList)
             {
                 item.Value = false;
             }
+
         }
 
         private void OnTimedEvent2(object source, ElapsedEventArgs e)

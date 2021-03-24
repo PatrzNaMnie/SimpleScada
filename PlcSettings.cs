@@ -153,7 +153,7 @@ namespace SimpleScada
             }
         }
 
-        // Read real value from input address
+        // Write real value from input address
         public void writeRealValue(string address, object value)
         {
             try
@@ -172,6 +172,26 @@ namespace SimpleScada
             }
         }
 
+        // Write int value from input address
+        public void writeIntValue(string address, object value)
+        {
+            try
+            {
+                if (plc != null)
+                {
+                    plc.Write(address, value);
+                }
+
+            }
+            catch (S7.Net.PlcException ex)
+            {
+
+                MessageBox.Show(ex.Message, "writeIntValue");
+
+            }
+        }
+
+
 
 
         // Cyclic data monitor. Reads all variables from file variables.xlsx and perform certain operations on them.
@@ -184,12 +204,21 @@ namespace SimpleScada
             }
         }
 
-        // Cyclic send data
-        public void sendData(List<WriteData> dataList)
+        // Cyclic send Bool values
+        public void sendBoolData(List<WriteBoolData> dataBoolList)
         {
-            foreach (var item in dataList)
+            foreach (var item in dataBoolList)
             {
                 writeBoolValue(item.Address, item.Value);
+            }
+        }
+
+        // Cycli send Real values
+        public void sendRealData(List<WriteRealData> dataRealList)
+        {
+            foreach (var item in dataRealList)
+            {
+                writeRealValue(item.Address, item.Value);
             }
         }
 

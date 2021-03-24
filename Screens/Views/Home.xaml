@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SimpleScada.Screens.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1536">
 
     <UserControl.Resources>
         <Style TargetType="{x:Type ProgressBar}">
@@ -79,7 +79,7 @@
     </UserControl.Resources>
 
     <Grid Background="#FFE9E9E9">
-        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="151" Margin="42,139,0,0">
+        <Rectangle HorizontalAlignment="Left" Height="9" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="303" Margin="176,347,0,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -89,9 +89,23 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image x:Name="ImgUV1" Source="{Binding StateUV1}" HorizontalAlignment="Left" Height="92" Margin="79,90,0,0" VerticalAlignment="Top" Width="95" />
-        <ProgressBar Name="TankLvlBar" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="174,118,516,181.6" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="150" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="4" Margin="169,264,0,0" VerticalAlignment="Top" Width="121" RadiusX="5" RadiusY="5">
+
+
+
+
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="151" Margin="21,64,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image x:Name="ImgUV1" Source="{Binding StateUV1}" HorizontalAlignment="Left" Height="92" Margin="58,15,0,0" VerticalAlignment="Top" Width="95" />
+        <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT1" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="158,43,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="154,272,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -101,11 +115,153 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Label Content="Tank T1" HorizontalAlignment="Left" Margin="174,239,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="66"/>
-        <Button Background="{x:Null}"  Margin="79,102,641,267.6" Click="UV1_Open_Station" Height="80" Width="80"/>
-        <Button Content="Button" Name="Test" HorizontalAlignment="Left" Margin="395,244,0,0" VerticalAlignment="Top" Width="75" Click="onClick"/>
-        <TextBox Name="testValue" HorizontalAlignment="Left" Height="23" Margin="548,203,0,0" TextWrapping="Wrap" Text="127.0" VerticalAlignment="Top" Width="120" KeyDown="enter"/>
-        <Image x:Name="ImgP1" Source="{Binding StateP1}" HorizontalAlignment="Left" Height="92" Margin="471,278,0,0" VerticalAlignment="Top" Width="95" />
-        <Button Background="{x:Null}"  Margin="471,278,249,91.6"  Height="80" Width="80" Click="P1_Open_Station"/>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="58,27,662,342.6" Click="UV1_Open_Station" Height="80" Width="80"/>
+        <Image x:Name="ImgP1" Source="{Binding StateP1}" HorizontalAlignment="Left" Height="80" Margin="222,295,0,0" VerticalAlignment="Top" Width="80" />
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="222,295,0,0"  Height="80" Width="80" Click="P1_Open_Station"/>
+        <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT2" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="728,122,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="723,350,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image x:Name="SignalLampT1_HH" Source="{Binding StateT1_HH}" HorizontalAlignment="Left" Height="43" Margin="309,51,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="SignalLampT1_LL" Source="{Binding StateT1_LL}" HorizontalAlignment="Left" Height="43" Margin="309,249,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="ImgUV2" Source="{Binding StateUV2}" HorizontalAlignment="Left" Height="92" Margin="591,137,0,0" VerticalAlignment="Top" Width="95" />
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="591,149,0,0" Click="UV2_Open_Station" Height="80" Width="80"/>
+        <Label Content="Tank T1" HorizontalAlignment="Left" Margin="158,243,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="68"/>
+        <Label Content="Tank T2" HorizontalAlignment="Left" Margin="728,322,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="71"/>
+        <Image x:Name="SignalLampT2_HH" Source="{Binding StateT2_HH}" HorizontalAlignment="Left" Height="43" Margin="878,130,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="SignalLampT2_LL" Source="{Binding StateT2_LL}" HorizontalAlignment="Left" Height="43" Margin="878,327,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="365,283,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+            <Label HorizontalAlignment="Center" Content="FI1" Margin="21.2,-0.8,21.6,-0.4"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="365,307,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+            <TextBox Name="FI_1_Value" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
+
+        </Border>
+        <Image x:Name="ImgP2" Source="{Binding StateP2}" HorizontalAlignment="Left" Height="80" Margin="1059,360,0,0" VerticalAlignment="Top" Width="80" />
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="1059,360,0,0"  Height="80" Width="80" Click="P2_Open_Station"/>
+        <Rectangle HorizontalAlignment="Left" Height="94" Margin="1062,85,0,0" RadiusY="5" RadiusX="5" VerticalAlignment="Top" Width="70">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF888888" Offset="1"/>
+                    <GradientStop Color="#FFDADADA" Offset="0.51"/>
+                    <GradientStop Color="#FF888888" Offset="1"/>
+                    <GradientStop Color="#FF888888" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF888888"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="1057,178,0,0" VerticalAlignment="Top" Width="80" RadiusX="5" RadiusY="5">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Ellipse HorizontalAlignment="Left" Height="13" Margin="1062,82,0,0" VerticalAlignment="Top" Width="70">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Label Content="Tank CT" HorizontalAlignment="Left" Margin="1062,149,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="70"/>
+        <Image x:Name="SignalLampCT_H" Source="{Binding StateCT_H}" HorizontalAlignment="Left" Height="43" Margin="1132,95,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="SignalLampCT_L" Source="{Binding StateCT_L}" HorizontalAlignment="Left" Height="43" Margin="1133,152,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="ImgP3" Source="{Binding StateP3}" HorizontalAlignment="Left" Height="80" Margin="1152,197,0,0" VerticalAlignment="Top" Width="80" />
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="1152,197,0,0"  Height="80" Width="80" Click="P3_Open_Station"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="1190,379,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+            <Label HorizontalAlignment="Center" Content="FI2" Margin="21.2,-0.8,21.6,-0.4"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="1190,403,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+            <TextBox x:Name="FI_2" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
+
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="730,274,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+            <Label HorizontalAlignment="Center" Content="FI1" Margin="21.2,-0.8,21.6,-0.4"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="730,298,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+            <TextBox Name="AI_1_Value" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
+
+        </Border>
+        <Label Content="LSHH__T1" HorizontalAlignment="Left" Height="28" Margin="308,25,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label Content="LSLL__T1" HorizontalAlignment="Left" Height="28" Margin="308,217,0,0" VerticalAlignment="Top" Width="54"/>
+
+
     </Grid>
 </UserControl>

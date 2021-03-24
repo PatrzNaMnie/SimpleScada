@@ -44,15 +44,68 @@ namespace SimpleScada.Screens.Views
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             
+            // Tank T1 Level 
+            Dispatcher.Invoke(new Action(() => { TankT1.Value = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_1")).Last().Value); }));
 
-            Dispatcher.Invoke(new Action(() => { TankLvlBar.Value = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_1")).Last().Value); }));
+            // Tank T2 Level 
+            Dispatcher.Invoke(new Action(() => { TankT1.Value = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_1")).Last().Value); }));
 
-            var uriSource = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("UV_1_STATE")).Value));
-            Dispatcher.Invoke(new Action(() => { ImgUV1.Source = new BitmapImage(uriSource); }));
+            // Flow FI 1
+            Dispatcher.Invoke(new Action(() => { FI_1_Value.Text = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("FI_1")).Last().Value).ToString() + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("FI_1")).Last().MeasuringUnit; }));
 
-            
+            // Flow FI 1
+            Dispatcher.Invoke(new Action(() => { FI_1_Value.Text = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("FI_2")).Last().Value).ToString() + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("FI_2")).Last().MeasuringUnit; }));
 
-           
+            // Ph AI 1
+            Dispatcher.Invoke(new Action(() => { AI_1_Value.Text = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("AI_1")).Last().Value).ToString() + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("AI_1")).Last().MeasuringUnit; }));
+
+            // Graphic visualisation of Valve UV1 Status
+            var uriUV1Source = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("UV_1_STATE")).Value));
+            Dispatcher.Invoke(new Action(() => { ImgUV1.Source = new BitmapImage(uriUV1Source); }));
+
+            // Graphic visualisation of Valve UV1 Status
+            var uriUV2Source = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("UV_2_STATE")).Value));
+            Dispatcher.Invoke(new Action(() => { ImgUV2.Source = new BitmapImage(uriUV2Source); }));
+
+            // Graphic visualisation of Valve P1 Status
+            var uriP1Source = new Uri(stateControl.setPumpImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("P1_STATE")).Value));
+            Dispatcher.Invoke(new Action(() => { ImgP1.Source = new BitmapImage(uriP1Source); }));
+
+            // Graphic visualisation of Valve P2 Status
+            var uriP2Source = new Uri(stateControl.setPumpImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("P2_STATE")).Value));
+            Dispatcher.Invoke(new Action(() => { ImgP2.Source = new BitmapImage(uriP2Source); }));
+
+            // Graphic visualisation of Valve P3 Status
+            var uriP3Source = new Uri(stateControl.setPumpImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("P3_STATE")).Value));
+            Dispatcher.Invoke(new Action(() => { ImgP3.Source = new BitmapImage(uriP3Source); }));
+
+
+            // Graphic visualisation of Very High Level on T1
+            var uriT1_HHSource = new Uri(stateControl.setSignalLampImg(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals("LSHH_T1")).Value));
+            Dispatcher.Invoke(new Action(() => { SignalLampT1_HH.Source = new BitmapImage(uriT1_HHSource); }));
+
+            // Graphic visualisation of Very High Level on T1
+            var uriT1_LLSource = new Uri(stateControl.setSignalLampImg(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals("LSHH_T1")).Value));
+            Dispatcher.Invoke(new Action(() => { SignalLampT1_LL.Source = new BitmapImage(uriT1_LLSource); }));
+
+            // Graphic visualisation of Very High Level on T2
+            var uriT2_HHSource = new Uri(stateControl.setSignalLampImg(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals("LSHH_T2")).Value));
+            Dispatcher.Invoke(new Action(() => { SignalLampT2_HH.Source = new BitmapImage(uriT2_HHSource); }));
+
+            // Graphic visualisation of Very High Level on T2
+            var uriT2_LLSource = new Uri(stateControl.setSignalLampImg(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals("LSHH_T2")).Value));
+            Dispatcher.Invoke(new Action(() => { SignalLampT2_LL.Source = new BitmapImage(uriT2_LLSource); }));
+
+            // Graphic visualisation of Very High Level on CT
+            var uriCT_HSource = new Uri(stateControl.setSignalLampImg(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals("LSH_CT")).Value));
+            Dispatcher.Invoke(new Action(() => { SignalLampCT_H.Source = new BitmapImage(uriCT_HSource); }));
+
+            // Graphic visualisation of Very High Level on CT
+            var uriCT_LSource = new Uri(stateControl.setSignalLampImg(MainWindow.plcConnect.getMode().Find(p => p.Name.Equals("LSH_CT")).Value));
+            Dispatcher.Invoke(new Action(() => { SignalLampCT_L.Source = new BitmapImage(uriCT_LSource); }));
+
+
+
 
         }
 
@@ -72,7 +125,7 @@ namespace SimpleScada.Screens.Views
             {
 
                 valveStations.Add(new ValveStation(Name = "UV_1"));
-                valveStations.First().Show();
+                valveStations.Last().Show();
             }
         }
 
@@ -83,22 +136,6 @@ namespace SimpleScada.Screens.Views
 
         }
 
-
-
-        private void enter(object sender, KeyEventArgs e)
-        {
-            if(e.Key == Key.Return)
-            {
-                Task.Run(() =>
-                {
-                    double value = new double();
-                    Dispatcher.Invoke(new Action(() => {  value = double.Parse(testValue.Text, System.Globalization.CultureInfo.InvariantCulture); }));
-                    Dispatcher.Invoke(new Action(() => { MainWindow.plcConnect.writeRealValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals("TEST")).Source, value); }));
-                });
-            }
-            
-        }
-
         private void P1_Open_Station(object sender, RoutedEventArgs e)
         {
             if (pumpStations.Exists(p => p.Name.Equals("P1")))
@@ -107,9 +144,48 @@ namespace SimpleScada.Screens.Views
             }
             else
             {
-
                 pumpStations.Add(new PumpStation(Name = "P1"));
-                pumpStations.First().Show();
+                pumpStations.Last().Show();
+            }
+        }
+
+        private void UV2_Open_Station(object sender, RoutedEventArgs e)
+        {
+            if (valveStations.Exists(p => p.Name.Equals("UV_2")))
+            {
+                valveStations.Find(p => p.Name.Equals("UV_2")).Show();
+            }
+            else
+            {
+
+                valveStations.Add(new ValveStation(Name = "UV_2"));
+                valveStations.Last().Show();
+            }
+        }
+
+        private void P2_Open_Station(object sender, RoutedEventArgs e)
+        {
+            if (pumpStations.Exists(p => p.Name.Equals("P2")))
+            {
+                pumpStations.Find(p => p.Name.Equals("P2")).Show();
+            }
+            else
+            {
+                pumpStations.Add(new PumpStation(Name = "P2"));
+                pumpStations.Last().Show();
+            }
+        }
+
+        private void P3_Open_Station(object sender, RoutedEventArgs e)
+        {
+            if (pumpStations.Exists(p => p.Name.Equals("P3")))
+            {
+                pumpStations.Find(p => p.Name.Equals("P3")).Show();
+            }
+            else
+            {
+                pumpStations.Add(new PumpStation(Name = "P3"));
+                pumpStations.Last().Show();
             }
         }
     }

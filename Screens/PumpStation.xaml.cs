@@ -27,8 +27,8 @@ namespace SimpleScada.Screens
         private string Name { get; set; }
 
         private List<S7.Net.Types.DataItem> dataItemList = new List<S7.Net.Types.DataItem>();
-        public static List<WriteData> writeDataList = new List<WriteData>();
-        public WriteData writeData = new WriteData();
+        public static List<WriteBoolData> writeDataList = new List<WriteBoolData>();
+        public WriteBoolData writeData = new WriteBoolData();
 
         public PumpStation(string Name)
         {
@@ -167,23 +167,18 @@ namespace SimpleScada.Screens
 
         private void sendSignal(string operation)
         {
-            /*Task.Run(() =>
-            {
-                MainWindow.plcConnect.writeBoolValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals(Name + operation)).Source, true);
-            });*/
-            MainScreen.writeDataList.Find(p => p.Name.Equals(Name + operation)).Value = true;
+
+            MainScreen.writeBoolDataList.Find(p => p.Name.Equals(Name + operation)).Value = true;
         }
 
         private void sendSP(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                Task.Run(() =>
-                {
+
                     double value = new double();
                     Dispatcher.Invoke(new Action(() => { value = double.Parse(txtSP.Text, System.Globalization.CultureInfo.InvariantCulture); }));
-                    Dispatcher.Invoke(new Action(() => { MainWindow.plcConnect.writeRealValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals(Name + "_SP")).Source, value); }));
-                });
+                    MainScreen.writeRealDataList.Find(p => p.Name.Equals(Name + "_SP")).Value = value;
             }
         }
     }
