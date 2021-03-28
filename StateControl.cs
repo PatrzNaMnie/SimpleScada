@@ -115,5 +115,110 @@ namespace SimpleScada
             else
                 return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/LampkaPhOn.png";
         }
+
+        public string fillingT1Txt(int State)
+        {
+            switch (State)
+            {
+                case 0:
+                    return "STOP";
+
+                case 1:
+                    return "FILLING ";
+
+                case 2:
+                    return "NO CONDITIONS TO RUN";
+
+                default:
+                    return "";
+
+            }
+        }
+
+        public string transferToT2Txt(int State)
+        {
+            switch (State)
+            {
+                case 0:
+                    return "STOP";
+
+                case 1:
+                    return "TRANSFER TO T2";
+
+                case 2:
+                    return "ADDING CHEMICALS";
+
+                case 3:
+                    return "NO CONDITIONS TO RUN";
+
+
+                default:
+                    return "";
+
+            }
+        }
+
+        public string dosingChemicalsTxt(int State)
+        {
+            switch (State)
+            {
+                case 0:
+                    return "STOP";
+
+                case 1:
+                    return "ADDING CHEMICALS";
+
+                case 2:
+                    return "NO CONDITIONS TO RUN";
+
+
+                default:
+                    return "";
+
+            }
+        }
+
+        public string emptyingT2Txt(int State)
+        {
+            switch (State)
+            {
+                case 0:
+                    return "STOP";
+
+                case 1:
+                    return "EMPTYING T2";
+
+                case 2:
+                    return "NO CONDITIONS TO RUN";
+
+
+                default:
+                    return "";
+
+            }
+        }
+
+        public string chooseProgramState(string name, int State)
+        {
+            switch (name)
+            {
+                case "FILL_T1":
+                    return fillingT1Txt(State);
+
+                case "TRANSFER_TO_T2":
+                    return transferToT2Txt(State);
+
+                case "DOSE_CHEMICALS":
+                    return dosingChemicalsTxt(State);
+
+                case "EMPTYING_T2":
+                    return emptyingT2Txt(State);
+
+                default:
+                    return "";
+
+            }
+        }
+
     }
 }

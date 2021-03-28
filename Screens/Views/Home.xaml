@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SimpleScada.Screens.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1536">
+             d:DesignHeight="864" d:DesignWidth="1536">
 
     <UserControl.Resources>
         <Style TargetType="{x:Type ProgressBar}">
@@ -118,8 +118,8 @@
         <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="58,27,662,342.6" Click="UV1_Open_Station" Height="80" Width="80"/>
         <Image x:Name="ImgP1" Source="{Binding StateP1}" HorizontalAlignment="Left" Height="80" Margin="222,295,0,0" VerticalAlignment="Top" Width="80" />
         <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="222,295,0,0"  Height="80" Width="80" Click="P1_Open_Station"/>
-        <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT2" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="728,122,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
-        <Rectangle HorizontalAlignment="Left" Height="4" Margin="723,350,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
+        <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT2" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="716,148,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="711,376,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -149,11 +149,11 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="ImgUV2" Source="{Binding StateUV2}" HorizontalAlignment="Left" Height="92" Margin="591,137,0,0" VerticalAlignment="Top" Width="95" />
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="591,149,0,0" Click="UV2_Open_Station" Height="80" Width="80"/>
+        <Image x:Name="ImgUV2" Source="{Binding StateUV2}" HorizontalAlignment="Left" Height="92" Margin="579,163,0,0" VerticalAlignment="Top" Width="95" />
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="579,175,0,0" Click="UV2_Open_Station" Height="80" Width="80"/>
         <Label Content="Tank T1" HorizontalAlignment="Left" Margin="158,243,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="68"/>
-        <Label Content="Tank T2" HorizontalAlignment="Left" Margin="728,322,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="71"/>
-        <Image x:Name="SignalLampT2_HH" Source="{Binding StateT2_HH}" HorizontalAlignment="Left" Height="43" Margin="878,130,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+        <Label Content="Tank T2" HorizontalAlignment="Left" Margin="716,348,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="71"/>
+        <Image x:Name="SignalLampT2_HH" Source="{Binding StateT2_HH}" HorizontalAlignment="Left" Height="43" Margin="866,156,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -163,7 +163,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="SignalLampT2_LL" Source="{Binding StateT2_LL}" HorizontalAlignment="Left" Height="43" Margin="878,327,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+        <Image x:Name="SignalLampT2_LL" Source="{Binding StateT2_LL}" HorizontalAlignment="Left" Height="43" Margin="866,353,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -243,8 +243,17 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="ImgP3" Source="{Binding StateP3}" HorizontalAlignment="Left" Height="80" Margin="1152,197,0,0" VerticalAlignment="Top" Width="80" />
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="1152,197,0,0"  Height="80" Width="80" Click="P3_Open_Station"/>
+        <Image x:Name="ImgP3" Source="{Binding StateP3}" HorizontalAlignment="Left" Height="80" Margin="955,150,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="955,149,0,0"  Height="80" Width="80" Click="P3_Open_Station"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="1190,379,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
             <Label HorizontalAlignment="Center" Content="FI2" Margin="21.2,-0.8,21.6,-0.4"/>
         </Border>
@@ -252,15 +261,19 @@
             <TextBox x:Name="FI_2" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
 
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="730,274,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="718,300,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
             <Label HorizontalAlignment="Center" Content="FI1" Margin="21.2,-0.8,21.6,-0.4"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="730,298,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="718,324,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
             <TextBox Name="AI_1_Value" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
 
         </Border>
         <Label Content="LSHH__T1" HorizontalAlignment="Left" Height="28" Margin="308,25,0,0" VerticalAlignment="Top" Width="54"/>
         <Label Content="LSLL__T1" HorizontalAlignment="Left" Height="28" Margin="308,217,0,0" VerticalAlignment="Top" Width="54"/>
+        <Button Content="FILLING T1" HorizontalAlignment="Left" Height="45" Margin="446,39,0,0" VerticalAlignment="Top" Width="123" Click="FillingT1StationOpen" Background="#FF343434" Foreground="#FFE0E0E0"/>
+        <Button Content="TRANSFER TO T2" HorizontalAlignment="Left" Height="45" Margin="574,39,0,0" VerticalAlignment="Top" Width="123" Click="TransferToT2StationOpen" Foreground="#FFE0E0E0" Background="#FF343434" />
+        <Button Content="DOSING CHEMICALS" HorizontalAlignment="Left" Height="45" Margin="702,39,0,0" VerticalAlignment="Top" Width="123" Click="DosingChemicalsStationOpen" Background="#FF343434" Foreground="#FFE0E0E0"  />
+        <Button Content="EMPTYING T2" HorizontalAlignment="Left" Height="45" Margin="830,39,0,0" VerticalAlignment="Top" Width="123" Foreground="#FFE0E0E0" Background="#FF343434" Click="EmptyiongT2StationOpen"  />
 
 
     </Grid>

@@ -28,6 +28,7 @@ namespace SimpleScada.Screens.Views
         private List<ValveStation> valveStations = new List<ValveStation>();
         private List<PumpStation> pumpStations = new List<PumpStation>();
         private StateControl stateControl = new StateControl();
+        private List<AutomaticControlStations> autoStations = new List<AutomaticControlStations>();
         public Home()
         {
             InitializeComponent();
@@ -186,6 +187,62 @@ namespace SimpleScada.Screens.Views
             {
                 pumpStations.Add(new PumpStation(Name = "P3"));
                 pumpStations.Last().Show();
+            }
+        }
+
+        private void FillingT1StationOpen(object sender, RoutedEventArgs e)
+        {
+            if (autoStations.Exists(p => p.Name.Equals("FILL_T1")))
+            {
+                autoStations.Find(p => p.Name.Equals("FILL_T1")).Show();
+            }
+            else
+            {
+
+                autoStations.Add(new AutomaticControlStations(Name = "FILL_T1"));
+                autoStations.Last().Show();
+            }
+        }
+
+        private void TransferToT2StationOpen(object sender, RoutedEventArgs e)
+        {
+            if (autoStations.Exists(p => p.Name.Equals("TRANSFER_TO_T2")))
+            {
+                autoStations.Find(p => p.Name.Equals("TRANSFER_TO_T2")).Show();
+            }
+            else
+            {
+
+                autoStations.Add(new AutomaticControlStations("TRANSFER_TO_T2", "LI_2_SP", "P1_SP"));
+                autoStations.Last().Show();
+            }
+        }
+
+        private void DosingChemicalsStationOpen(object sender, RoutedEventArgs e)
+        {
+            if (autoStations.Exists(p => p.Name.Equals("DOSE_CHEMICALS")))
+            {
+                autoStations.Find(p => p.Name.Equals("DOSE_CHEMICALS")).Show();
+            }
+            else
+            {
+
+                autoStations.Add(new AutomaticControlStations("DOSE_CHEMICALS"));
+                autoStations.Last().Show();
+            }
+        }
+
+        private void EmptyiongT2StationOpen(object sender, RoutedEventArgs e)
+        {
+            if (autoStations.Exists(p => p.Name.Equals("EMPTYING_T2")))
+            {
+                autoStations.Find(p => p.Name.Equals("EMPTYING_T2")).Show();
+            }
+            else
+            {
+
+                autoStations.Add(new AutomaticControlStations("EMPTYING_T2", "P2_SP"));
+                autoStations.Last().Show();
             }
         }
     }
