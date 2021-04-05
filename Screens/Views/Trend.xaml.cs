@@ -44,7 +44,8 @@ namespace SimpleScada.Screens.Views
 
             SeriesCollection = new SeriesCollection { };
             Labels = new List<string> { };
-            YFormatter = value => value.ToString("C");
+            YFormatter = value => value.ToString("") + MainScreen.variables.Find(p => p.Name.Equals(data.Last().MeasuringPoin)).MeasuringUnit;
+
 
             // Default measuring point will be LI_1
 
@@ -146,13 +147,17 @@ namespace SimpleScada.Screens.Views
             Task.Run(() =>
             {
 
-                using (var db = new SimpleScadaContext())
-                {
+            using (var db = new SimpleScadaContext())
+            {
 
-                    data = db.Data.Where(p => p.MeasuringPoin.Equals(measuringPoint)).OrderByDescending(p => p.Id).Take(60).ToList();
+                data = db.Data.Where(p => p.MeasuringPoin.Equals(measuringPoint)).OrderByDescending(p => p.Id).Take(60).ToList();
 
-                }
-                counter = 60;
+            }
+            counter = 60;
+
+            YFormatter = null;
+            YFormatter = value => value.ToString("") + MainScreen.variables.Find(p => p.Name.Equals(data.Last().MeasuringPoin)).MeasuringUnit;
+
                 foreach (var item in data)
                 {
                     result = DateTime.Compare(Convert.ToDateTime(item.Time), actualTime.AddSeconds(60));

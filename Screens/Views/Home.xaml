@@ -78,8 +78,77 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="#FFE9E9E9">
-        <Rectangle HorizontalAlignment="Left" Height="9" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="303" Margin="176,347,0,0">
+    <Grid Background="#FFE9E9E9" Margin="-1,1,1,-1">
+        <Rectangle HorizontalAlignment="Left" Height="106" Margin="543,48,0,0" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="526" Stroke="Black"/>
+
+
+        <Rectangle HorizontalAlignment="Left" Height="9" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="840" Margin="647,592,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="82" Margin="1129,374,0,0" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="326" Margin="848,410,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="78" Margin="648,531,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="78" Margin="94,280,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <Rectangle HorizontalAlignment="Left" Height="9" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="632" Margin="94,392,0,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -93,7 +162,7 @@
 
 
 
-        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="151" Margin="21,64,0,0">
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="151" Margin="21,111,0,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -103,9 +172,9 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image x:Name="ImgUV1" Source="{Binding StateUV1}" HorizontalAlignment="Left" Height="92" Margin="58,15,0,0" VerticalAlignment="Top" Width="95" />
-        <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT1" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="158,43,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
-        <Rectangle HorizontalAlignment="Left" Height="4" Margin="154,272,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
+        <Image x:Name="ImgUV1" Source="{Binding StateUV1}" HorizontalAlignment="Left" Height="92" Margin="58,62,0,0" VerticalAlignment="Top" Width="95" />
+        <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT1" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="158,90,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="154,319,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -115,11 +184,11 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="58,27,662,342.6" Click="UV1_Open_Station" Height="80" Width="80"/>
-        <Image x:Name="ImgP1" Source="{Binding StateP1}" HorizontalAlignment="Left" Height="80" Margin="222,295,0,0" VerticalAlignment="Top" Width="80" />
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="222,295,0,0"  Height="80" Width="80" Click="P1_Open_Station"/>
-        <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT2" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="716,148,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
-        <Rectangle HorizontalAlignment="Left" Height="4" Margin="711,376,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="65,62,0,0" Click="UV1_Open_Station" Height="80" Width="80"/>
+        <Image x:Name="ImgP1" Source="{Binding StateP1}" HorizontalAlignment="Left" Height="80" Margin="222,337,0,0" VerticalAlignment="Top" Width="80" />
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="222,337,0,0"  Height="80" Width="80" Click="P1_Open_Station"/>
+        <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT2" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="716,329,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="711,557,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -129,7 +198,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image x:Name="SignalLampT1_HH" Source="{Binding StateT1_HH}" HorizontalAlignment="Left" Height="43" Margin="309,51,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+        <Image x:Name="SignalLampT1_HH" Source="{Binding StateT1_HH}" HorizontalAlignment="Left" Height="43" Margin="309,98,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -139,7 +208,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="SignalLampT1_LL" Source="{Binding StateT1_LL}" HorizontalAlignment="Left" Height="43" Margin="309,249,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+        <Image x:Name="SignalLampT1_LL" Source="{Binding StateT1_LL}" HorizontalAlignment="Left" Height="43" Margin="309,296,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -149,11 +218,11 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="ImgUV2" Source="{Binding StateUV2}" HorizontalAlignment="Left" Height="92" Margin="579,163,0,0" VerticalAlignment="Top" Width="95" />
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="579,175,0,0" Click="UV2_Open_Station" Height="80" Width="80"/>
-        <Label Content="Tank T1" HorizontalAlignment="Left" Margin="158,243,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="68"/>
-        <Label Content="Tank T2" HorizontalAlignment="Left" Margin="716,348,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="71"/>
-        <Image x:Name="SignalLampT2_HH" Source="{Binding StateT2_HH}" HorizontalAlignment="Left" Height="43" Margin="866,156,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+        <Image x:Name="ImgUV2" Source="{Binding StateUV2}" HorizontalAlignment="Left" Height="92" Margin="579,344,0,0" VerticalAlignment="Top" Width="95" />
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="587,346,0,0" Click="UV2_Open_Station" Height="80" Width="80"/>
+        <Label Content="Tank T1" HorizontalAlignment="Left" Margin="158,290,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="68"/>
+        <Label Content="Tank T2" HorizontalAlignment="Left" Margin="716,529,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="71"/>
+        <Image x:Name="SignalLampT2_HH" Source="{Binding StateT2_HH}" HorizontalAlignment="Left" Height="43" Margin="866,337,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -163,7 +232,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="SignalLampT2_LL" Source="{Binding StateT2_LL}" HorizontalAlignment="Left" Height="43" Margin="866,353,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+        <Image x:Name="SignalLampT2_LL" Source="{Binding StateT2_LL}" HorizontalAlignment="Left" Height="43" Margin="866,534,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -173,16 +242,16 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="365,283,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="417,331,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
             <Label HorizontalAlignment="Center" Content="FI1" Margin="21.2,-0.8,21.6,-0.4"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="365,307,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
-            <TextBox Name="FI_1_Value" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="417,355,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+            <TextBox x:Name="FI_1_Value" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
 
         </Border>
-        <Image x:Name="ImgP2" Source="{Binding StateP2}" HorizontalAlignment="Left" Height="80" Margin="1059,360,0,0" VerticalAlignment="Top" Width="80" />
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="1059,360,0,0"  Height="80" Width="80" Click="P2_Open_Station"/>
-        <Rectangle HorizontalAlignment="Left" Height="94" Margin="1062,85,0,0" RadiusY="5" RadiusX="5" VerticalAlignment="Top" Width="70">
+        <Image x:Name="ImgP2" Source="{Binding StateP2}" HorizontalAlignment="Left" Height="80" Margin="989,536,0,0" VerticalAlignment="Top" Width="80" />
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="989,536,0,0"  Height="80" Width="80" Click="P2_Open_Station"/>
+        <Rectangle HorizontalAlignment="Left" Height="94" Margin="1135,256,0,0" RadiusY="5" RadiusX="5" VerticalAlignment="Top" Width="70">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <LinearGradientBrush.RelativeTransform>
@@ -202,7 +271,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle HorizontalAlignment="Left" Height="4" Margin="1057,178,0,0" VerticalAlignment="Top" Width="80" RadiusX="5" RadiusY="5">
+        <Rectangle HorizontalAlignment="Left" Height="4" Margin="1130,349,0,0" VerticalAlignment="Top" Width="80" RadiusX="5" RadiusY="5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -212,7 +281,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Ellipse HorizontalAlignment="Left" Height="13" Margin="1062,82,0,0" VerticalAlignment="Top" Width="70">
+        <Ellipse HorizontalAlignment="Left" Height="13" Margin="1135,252,0,0" VerticalAlignment="Top" Width="70">
             <Ellipse.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF343434" Offset="1"/>
@@ -222,8 +291,8 @@
                 </LinearGradientBrush>
             </Ellipse.Fill>
         </Ellipse>
-        <Label Content="Tank CT" HorizontalAlignment="Left" Margin="1062,149,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="70"/>
-        <Image x:Name="SignalLampCT_H" Source="{Binding StateCT_H}" HorizontalAlignment="Left" Height="43" Margin="1132,95,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+        <Label Content="Tank CT" HorizontalAlignment="Left" Margin="1135,320,0,0" VerticalAlignment="Top" Height="29" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.517,0.55" Opacity="0.6" Width="70"/>
+        <Image x:Name="SignalLampCT_H" Source="{Binding StateCT_H}" HorizontalAlignment="Left" Height="43" Margin="1205,266,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -233,7 +302,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="SignalLampCT_L" Source="{Binding StateCT_L}" HorizontalAlignment="Left" Height="43" Margin="1133,152,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
+        <Image x:Name="SignalLampCT_L" Source="{Binding StateCT_L}" HorizontalAlignment="Left" Height="43" Margin="1204,323,0,0" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -243,7 +312,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="ImgP3" Source="{Binding StateP3}" HorizontalAlignment="Left" Height="80" Margin="955,150,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.5,0.5" >
+        <Image x:Name="ImgP3" Source="{Binding StateP3}" HorizontalAlignment="Left" Height="80" Margin="1015,355,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -253,27 +322,226 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="955,149,0,0"  Height="80" Width="80" Click="P3_Open_Station"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="1190,379,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}"  Margin="1017,353,0,0"  Height="80" Width="80" Click="P3_Open_Station"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="1266,531,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
             <Label HorizontalAlignment="Center" Content="FI2" Margin="21.2,-0.8,21.6,-0.4"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="1190,403,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="1266,555,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
             <TextBox x:Name="FI_2" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
 
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="718,300,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="718,481,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
             <Label HorizontalAlignment="Center" Content="FI1" Margin="21.2,-0.8,21.6,-0.4"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="718,324,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
-            <TextBox Name="AI_1_Value" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="718,505,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
+            <TextBox x:Name="AI_1_Value" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
 
         </Border>
-        <Label Content="LSHH__T1" HorizontalAlignment="Left" Height="28" Margin="308,25,0,0" VerticalAlignment="Top" Width="54"/>
-        <Label Content="LSLL__T1" HorizontalAlignment="Left" Height="28" Margin="308,217,0,0" VerticalAlignment="Top" Width="54"/>
-        <Button Content="FILLING T1" HorizontalAlignment="Left" Height="45" Margin="446,39,0,0" VerticalAlignment="Top" Width="123" Click="FillingT1StationOpen" Background="#FF343434" Foreground="#FFE0E0E0"/>
-        <Button Content="TRANSFER TO T2" HorizontalAlignment="Left" Height="45" Margin="574,39,0,0" VerticalAlignment="Top" Width="123" Click="TransferToT2StationOpen" Foreground="#FFE0E0E0" Background="#FF343434" />
-        <Button Content="DOSING CHEMICALS" HorizontalAlignment="Left" Height="45" Margin="702,39,0,0" VerticalAlignment="Top" Width="123" Click="DosingChemicalsStationOpen" Background="#FF343434" Foreground="#FFE0E0E0"  />
-        <Button Content="EMPTYING T2" HorizontalAlignment="Left" Height="45" Margin="830,39,0,0" VerticalAlignment="Top" Width="123" Foreground="#FFE0E0E0" Background="#FF343434" Click="EmptyiongT2StationOpen"  />
+        <Label Content="LSHH__T1" HorizontalAlignment="Left" Height="28" Margin="308,72,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label Content="LSLL__T1" HorizontalAlignment="Left" Height="28" Margin="308,264,0,0" VerticalAlignment="Top" Width="54"/>
+        <Button Content="FILLING T1" HorizontalAlignment="Left" Height="45" Margin="553,95,0,0" VerticalAlignment="Top" Width="123" Click="FillingT1StationOpen" Background="#FF343434" Foreground="#FFE0E0E0"/>
+        <Button Content="TRANSFER TO T2" HorizontalAlignment="Left" Height="45" Margin="681,95,0,0" VerticalAlignment="Top" Width="123" Click="TransferToT2StationOpen" Foreground="#FFE0E0E0" Background="#FF343434" />
+        <Button Content="DOSING CHEMICALS" HorizontalAlignment="Left" Height="45" Margin="809,95,0,0" VerticalAlignment="Top" Width="123" Click="DosingChemicalsStationOpen" Background="#FF343434" Foreground="#FFE0E0E0"  />
+        <Button Content="EMPTYING T2" HorizontalAlignment="Left" Height="45" Margin="937,95,0,0" VerticalAlignment="Top" Width="123" Foreground="#FFE0E0E0" Background="#FF343434" Click="EmptyiongT2StationOpen"  />
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="120" Margin="39,336,0,0" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="10" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="70" Margin="617,561,0,0" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Content="LSHH__T2" HorizontalAlignment="Left" Height="28" Margin="866,306,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Content="LSLL__T2" HorizontalAlignment="Left" Height="28" Margin="866,506,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label Content="LSH__CT" HorizontalAlignment="Left" Height="26" Margin="1205,236,0,0" VerticalAlignment="Top" Width="52"/>
+        <Label Content="LSL__CT" HorizontalAlignment="Left" Height="26" Margin="1205,294,0,0" VerticalAlignment="Top" Width="52"/>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="449,379,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="448,379,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="447,379,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="446,379,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Rectangle HorizontalAlignment="Left" Height="9" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="18" Margin="435,392,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="449,379,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="448,379,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="447,379,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="446,379,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Rectangle HorizontalAlignment="Left" Height="9" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="18" Margin="435,392,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="1298,579,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="1297,579,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="1296,579,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="1295,579,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="1298,579,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="1297,579,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="1296,579,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Ellipse HorizontalAlignment="Left" Height="33" Margin="1295,579,0,0" VerticalAlignment="Top" Width="9" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Stroke>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF767676" Offset="0"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Rectangle HorizontalAlignment="Left" Height="9" RadiusY="3" RadiusX="3" VerticalAlignment="Top" Width="18" Margin="1284,592,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FF949494"/>
+                    <GradientStop Color="#FF343434" Offset="1"/>
+                    <GradientStop Color="#FFBFBFBF" Offset="0.998"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Content="Process control" HorizontalAlignment="Left" Height="42" Margin="716,48,0,0" VerticalAlignment="Top" Width="182" FontSize="24" FontWeight="Bold"/>
 
 
     </Grid>
