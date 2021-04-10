@@ -22,7 +22,7 @@ namespace SimpleScada.Screens.Views
     /// </summary>
     public partial class Home : UserControl
     {
-        private static System.Timers.Timer _timer1;
+        private static System.Timers.Timer _timer1 = new System.Timers.Timer(500);
 
         
         private List<ValveStation> valveStations = new List<ValveStation>();
@@ -33,8 +33,6 @@ namespace SimpleScada.Screens.Views
         {
             InitializeComponent();
 
-
-            _timer1 = new System.Timers.Timer(500); //Updates every second.
             _timer1.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer1.Enabled = true;
             
@@ -46,25 +44,25 @@ namespace SimpleScada.Screens.Views
         {
             
             // Tank T1 Level 
-            Dispatcher.Invoke(new Action(() => { TankT1.Value = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_1")).Last().Value); }));
+            Dispatcher.Invoke(new Action(() => { TankT1.Value = Math.Round(Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_1")).Last().Value), 2); }));
 
             // Tank T2 Level 
-            Dispatcher.Invoke(new Action(() => { TankT1.Value = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_1")).Last().Value); }));
+            Dispatcher.Invoke(new Action(() => { TankT2.Value = Math.Round(Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("LI_2")).Last().Value), 2); }));
 
             // Flow FI 1
-            Dispatcher.Invoke(new Action(() => { FI_1_Value.Text = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("FI_1")).Last().Value).ToString() + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("FI_1")).Last().MeasuringUnit; }));
+            Dispatcher.Invoke(new Action(() => { FI_1_Value.Text = String.Format("{0:0.00}", Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("FI_1")).Last().Value)) + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("FI_1")).Last().MeasuringUnit; }));
 
-            // Flow FI 1
-            Dispatcher.Invoke(new Action(() => { FI_1_Value.Text = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("FI_2")).Last().Value).ToString() + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("FI_2")).Last().MeasuringUnit; }));
+            // Flow FI 2
+            Dispatcher.Invoke(new Action(() => { FI_2_Value.Text = String.Format("{0:0.00}", Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("FI_2")).Last().Value)) + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("FI_2")).Last().MeasuringUnit; }));
 
             // Ph AI 1
-            Dispatcher.Invoke(new Action(() => { AI_1_Value.Text = Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("AI_1")).Last().Value).ToString() + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("AI_1")).Last().MeasuringUnit; }));
+            Dispatcher.Invoke(new Action(() => { AI_1_Value.Text = String.Format("{0:0.00}", Convert.ToDouble(MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals("AI_1")).Last().Value)) + MainWindow.plcConnect.getVariables().Where(p => p.Name.Equals("AI_1")).Last().MeasuringUnit; }));
 
             // Graphic visualisation of Valve UV1 Status
             var uriUV1Source = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("UV_1_STATE")).Value));
             Dispatcher.Invoke(new Action(() => { ImgUV1.Source = new BitmapImage(uriUV1Source); }));
 
-            // Graphic visualisation of Valve UV1 Status
+            // Graphic visualisation of Valve UV2 Status
             var uriUV2Source = new Uri(stateControl.setValveImg(MainWindow.plcConnect.getState().Find(p => p.Name.Equals("UV_2_STATE")).Value));
             Dispatcher.Invoke(new Action(() => { ImgUV2.Source = new BitmapImage(uriUV2Source); }));
 
@@ -213,7 +211,7 @@ namespace SimpleScada.Screens.Views
             else
             {
 
-                autoStations.Add(new AutomaticControlStations("TRANSFER_TO_T2", "LI_2_SP", "P1_SP"));
+                autoStations.Add(new AutomaticControlStations("TRANSFER_TO_T2", "P1_SP"));
                 autoStations.Last().Show();
             }
         }

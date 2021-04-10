@@ -42,6 +42,8 @@ namespace SimpleScada.Screens
         {
             InitializeComponent();
 
+            DataContext = new Logo();
+
             // Read variables from Variables.xlsx file (Excel/Vairables.xlsl)
             variables.AddRange(rV.readVar());
 

@@ -174,6 +174,7 @@
         </Rectangle>
         <Image x:Name="ImgUV1" Source="{Binding StateUV1}" HorizontalAlignment="Left" Height="92" Margin="58,62,0,0" VerticalAlignment="Top" Width="95" />
         <ProgressBar VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="TankT1" BorderThickness="1" BorderBrush="#95928A" SnapsToDevicePixels="True"  Background="#E2E2E2" Foreground="#FF387DF3" Margin="158,90,0,0" IsIndeterminate="False" Orientation="Vertical" Minimum="0" Maximum="100" Value="{Binding Value}" Height="234" Width="150"/>
+        
         <Rectangle HorizontalAlignment="Left" Height="4" Margin="154,319,0,0" VerticalAlignment="Top" Width="160" RadiusX="5" RadiusY="5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -327,11 +328,11 @@
             <Label HorizontalAlignment="Center" Content="FI2" Margin="21.2,-0.8,21.6,-0.4"/>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="1266,555,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
-            <TextBox x:Name="FI_2" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="FI_2_Value" TextWrapping="Wrap" Text="" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>
 
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="718,481,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
-            <Label HorizontalAlignment="Center" Content="FI1" Margin="21.2,-0.8,21.6,-0.4"/>
+            <Label HorizontalAlignment="Center" Content="AI1" Margin="21.2,-0.8,21.6,-0.4"/>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="718,505,0,0" VerticalAlignment="Top" Width="70" CornerRadius="5">
             <TextBox x:Name="AI_1_Value" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" TextAlignment="Center" BorderBrush="{x:Null}"/>

@@ -264,41 +264,7 @@ namespace SimpleScada
                             }
                         }
                         break;
-                    /*case "REAL":
-                        if (alarmInList == null && Convert.ToDouble(readBoolValue(variable.Source)) > variable.AlarmLimitMin)
-                        {
-                            alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
 
-                        }
-                        else if (alarmInList != null)
-                        {
-                            if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == false && Convert.ToDouble(readBoolValue(variable.Source)) > variable.AlarmLimitMin)
-                            {
-                                alarmInList.Add(new AlarmList() { TimeReceived = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(), VariableName = variable.Name, AlarmValue = 1, Text = variable.AlarmText, Active = true });
-
-                            }
-                            else if (alarmInList.Any(p => p.VariableName.Equals(variable.Name)) == true && Convert.ToDouble(readBoolValue(variable.Source)) < variable.AlarmLimitMin)
-                            {
-
-                                var tempAlarm = alarmInList.First(p => p.VariableName.Equals(variable.Name)) as AlarmList;
-
-                                using (var db = new SimpleScadaContext())
-                                {
-                                    db.AlarmHistory.Add(new AlarmHistory()
-                                    {
-                                        TimeReceived = tempAlarm.TimeReceived,
-                                        TimeAcknowledge = actualTime.ToShortDateString() + " " + actualTime.ToLongTimeString(),
-                                        VariableName = tempAlarm.VariableName,
-                                        Text = tempAlarm.Text,
-                                        AlarmValue = tempAlarm.AlarmValue
-                                    });
-                                    db.SaveChanges();
-                                }
-
-                                alarmInList.Remove(tempAlarm);
-                            }
-                        }
-                        break;*/
 
                     default:
                         break;

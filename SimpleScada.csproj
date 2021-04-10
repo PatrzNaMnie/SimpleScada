@@ -182,6 +182,7 @@
     <Compile Include="Screens\VIewModels\Alarm.cs" />
     <Compile Include="Screens\VIewModels\HistoryAlarm.cs" />
     <Compile Include="Screens\VIewModels\Home.cs" />
+    <Compile Include="Screens\VIewModels\Logo.cs" />
     <Compile Include="Screens\VIewModels\Trend.cs" />
     <Compile Include="Screens\Views\Alarm.xaml.cs">
       <DependentUpon>Alarm.xaml</DependentUpon>
@@ -194,6 +195,9 @@
     </Compile>
     <Compile Include="Screens\Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Views\Logo.xaml.cs">
+      <DependentUpon>Logo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Views\Trend.xaml.cs">
       <DependentUpon>Trend.xaml</DependentUpon>
@@ -252,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Views\Logo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -317,6 +325,9 @@
     <Resource Include="Images\ZawórPneumOtwarty.png" />
     <Resource Include="Images\ZawórPneumOtwZam.png" />
     <Resource Include="Images\ZawórPneumZamknięty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SimpleScada.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -13,18 +13,18 @@ namespace SimpleScada
             switch (State)
             {
                 case 0:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumZamknięty.png";
-
+                    return "pack://application:,,,/SimpleScada;component/Images/ZawórPneumZamknięty.png";
+                
                 case 1:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumOtwZam.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/ZawórPneumOtwZam.png";
 
                 case 2:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumOtwarty.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/ZawórPneumOtwarty.png";
                 case 3:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumOtwZam.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/ZawórPneumOtwZam.png";
 
                 case 4:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/ZawórPneumAwaria.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/ZawórPneumAwaria.png";
 
                 default:
                     return "";
@@ -61,19 +61,19 @@ namespace SimpleScada
             switch (State)
             {
                 case 0:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/PompaStop.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/PompaStop.png"; 
 
                 case 1:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/PompaStart.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/PompaStart.png";
 
                 case 2:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/PompaStart.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/PompaStart.png";
 
                 case 3:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/PompaStop.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/PompaStop.png";
 
                 case 4:
-                    return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/PompaAwaria.png";
+                    return "pack://application:,,,/SimpleScada;component/Images/PompaAwaria.png";
 
                 default:
                     return "";
@@ -110,10 +110,11 @@ namespace SimpleScada
         {
             if (state.Equals("True"))
             {
-                return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/LampkaPhOff.png";
+                return "pack://application:,,,/SimpleScada;component/Images/LampkaPhOff.png";
+                
             }
             else
-                return "C:/Programowanie/WPF/ProjektScadaMes/SimpleScada/SimpleScada/Images/LampkaPhOn.png";
+                return "pack://application:,,,/SimpleScada;component/Images/LampkaPhOn.png";
         }
 
         public string fillingT1Txt(int State)

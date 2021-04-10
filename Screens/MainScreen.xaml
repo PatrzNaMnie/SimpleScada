@@ -23,6 +23,9 @@
         <DataTemplate x:Name="AlarmHistoryView" DataType="{x:Type viewmodels:HistoryAlarm}">
             <views:HistoryAlarm DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="Logo" DataType="{x:Type viewmodels:Logo}">
+            <views:Logo DataContext="{Binding}"/>
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -87,9 +90,12 @@
 
 
 
-        <ContentControl Content="{Binding}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            
+        <ContentControl Content="{Binding}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+
         </ContentControl>
+
+
+
     </Grid>
 
 

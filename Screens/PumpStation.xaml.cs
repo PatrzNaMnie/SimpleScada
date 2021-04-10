@@ -41,11 +41,7 @@ namespace SimpleScada.Screens
             stationName.Content = Name;
             this.Name = Name;
 
-            /*foreach (var item in MainScreen.variables)
-            {
-                if (item.MeasuringUnit.Equals("Send") && item.Type.Equals("BOOL"))
-                    writeDataList.Add(new WriteData() { Name = item.Name, Address = item.Source, Value = false });
-            }*/
+
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -75,7 +71,7 @@ namespace SimpleScada.Screens
 
             dataItemList.Clear();
             dataItemList.AddRange(writeData.createDataList(writeDataList));
-            //MainWindow.plcConnect.writeArray(dataItemList.ToArray());
+
 
             foreach (var item in writeDataList)
             {

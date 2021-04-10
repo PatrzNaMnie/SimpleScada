@@ -41,11 +41,6 @@ namespace SimpleScada.Screens
             stationName.Content = Name;
             this.Name = Name;
 
-            /*foreach (var item in MainScreen.variables)
-            {
-                if (item.MeasuringUnit.Equals("Send") && item.Type.Equals("BOOL"))
-                    writeDataList.Add(new WriteData() { Name = item.Name, Address = item.Source, Value = false });
-            }*/
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -154,10 +149,7 @@ namespace SimpleScada.Screens
 
         private void sendSignal(string operation)
         {
-            /*Task.Run(() =>
-            {
-                MainWindow.plcConnect.writeBoolValue(MainWindow.plcConnect.getVariables().Find(p => p.Name.Equals(Name + operation)).Source, true);
-            });*/
+
             MainScreen.writeBoolDataList.Find(p => p.Name.Equals(Name + operation)).Value = true;
         }
     }

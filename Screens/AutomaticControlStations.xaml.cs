@@ -96,7 +96,7 @@ namespace SimpleScada.Screens
 
         }
 
-            private void startClick(object sender, RoutedEventArgs e)
+        private void startClick(object sender, RoutedEventArgs e)
         {
             sendSignal("_START");
         }
@@ -144,7 +144,7 @@ namespace SimpleScada.Screens
             {
 
                 double value = new double();
-                Dispatcher.Invoke(new Action(() => { value = double.Parse(Sp1.Text, System.Globalization.CultureInfo.InvariantCulture); }));
+                Dispatcher.Invoke(new Action(() => { value = double.Parse(Sp2.Text, System.Globalization.CultureInfo.InvariantCulture); }));
                 MainScreen.writeRealDataList.Find(p => p.Name.Equals(Name + "_" + secondSetpointName)).Value = value;
             }
         }

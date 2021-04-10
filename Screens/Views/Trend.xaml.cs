@@ -44,7 +44,7 @@ namespace SimpleScada.Screens.Views
 
             SeriesCollection = new SeriesCollection { };
             Labels = new List<string> { };
-            YFormatter = value => value.ToString("") + MainScreen.variables.Find(p => p.Name.Equals(data.Last().MeasuringPoin)).MeasuringUnit;
+            YFormatter = value => Math.Round(value, 2).ToString("") + MainScreen.variables.Find(p => p.Name.Equals(data.Last().MeasuringPoin)).MeasuringUnit;
 
 
             // Default measuring point will be LI_1
@@ -77,7 +77,7 @@ namespace SimpleScada.Screens.Views
                     }
                     else
                     {
-                        SeriesCollection[0].Values.Add(Convert.ToDouble(item.Value));
+                        SeriesCollection[0].Values.Add(Math.Round(Convert.ToDouble(item.Value), 2));
                         Labels.Add(item.Time);
                     }
                     counter--;
@@ -185,7 +185,7 @@ namespace SimpleScada.Screens.Views
             var dataCollected = MainWindow.plcConnect.getData().Where(p => p.MeasuringPoin.Equals(measuringPoint)).Last();
             SeriesCollection[0].Values.Remove(Convert.ToDouble(SeriesCollection[0].Values[0].ToString()));
             Labels.Remove(Labels[0].ToString());
-            SeriesCollection[0].Values.Add(Convert.ToDouble(dataCollected.Value));
+            SeriesCollection[0].Values.Add(Math.Round(Convert.ToDouble(dataCollected.Value), 2));
             Labels.Add(dataCollected.Time);
         }
     }

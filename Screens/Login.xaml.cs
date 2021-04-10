@@ -74,47 +74,5 @@ namespace SimpleScada.Screens
             MainScreen.loginScreen.Close();
         }
 
-        /* using(var db = new PeopleContext())
-            {
-                //db.Peoples.Add(new People() { Name = "Kamil", LastName = "Wojciechowski" });
-                //db.SaveChanges();
-                /*Console.Write("Podaj imię:");
-                var name = Console.ReadLine();
-                Console.WriteLine();
-                Console.Write("Podaj nazwisko:");
-                var lastName = Console.ReadLine();
-                Console.WriteLine();
-                db.Peoples.Add(new People() { Name = name, LastName = lastName });
-                db.SaveChanges();
-         */
-        /*
-               var peoples = db.Peoples.OrderByDescending(p => p.Id);
-               foreach (var people in peoples)
-               {
-                   Console.WriteLine("{0} {1} {2}", people.Name, people.LastName, people.Id);
-               }
-
-               Console.WriteLine("Którą postać usunąć?");
-               var Id = Int32.Parse(Console.ReadLine());
-               foreach (var people in peoples)
-               {
-                   if(people.Id == Id)
-                   {
-                       db.Peoples.Remove(people);
-
-                   }
-               }
-        */
-
-
-        /*       db.SaveChanges();
-               //db.Peoples.Remove(db.Peoples.OrderBy(p => p.Id == Id).First());
-
-               //db.SaveChanges();
-               foreach (var people in peoples)
-               {
-                   Console.WriteLine("{0} {1} {2}", people.Name, people.LastName, people.Id);
-               }
-        */
     }
 }
