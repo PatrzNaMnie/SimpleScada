@@ -1,6 +1,8 @@
 
 
 # User Manual
+#
+#Table of Contents
 
 - [Requirements](#requirements)
 - [Variables](#variables)
