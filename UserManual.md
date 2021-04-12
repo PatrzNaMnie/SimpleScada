@@ -45,7 +45,6 @@
 ##### •	 CpuType allows you to select the type of Siemens PLC you want to connect to.
 ##### •	 IP Address is the address of PLC controller
 ##### •	 Rack and Slot position you can get from PLC Hardware configuration
-#
 ##### After set correct IP Address, Rack and Slot user can establish Connection by pressing “Connection” button.  If all goes well, the Main screen will appear.
 #
 - ### Main screen
