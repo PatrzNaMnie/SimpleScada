@@ -2,9 +2,9 @@
 
 # User Manual
 
-- [#Requirements](#requirements)
-- [#Variables](#variables)
-- [#Screens](#screens)
+- [Requirements](#requirements)
+- [Variables](#variables)
+- [Screens](#screens)
   * [Main screen](#main-screen)
   * [Home](#home)
   * [Trends](#trends)
