@@ -5,15 +5,19 @@
 - [#Requirements](#requirements)
 - [#Variables](#variables)
 - [#Screens](#screens)
-  * [Main-screen](#main-screen)
+  * [Main screen](#main-screen)
   * [Home](#home)
   * [Trends](#trends)
-  * [Alarm-List](#alarm-list)
-  * [Historical-alarms](#historical-alarms)
-  * [Login-panel](#login-panel)
-  * [Administration-panel](#administration-panel)
-  * [Valve-station](#valve-station)
-  * [Pump-station](#pump-station)
+  * [Alarm List](#alarm-list)
+  * [Historical alarms](#historical-alarms)
+  * [Login panel](#login-panel)
+  * [Administration panel](#administration-panel)
+  * [Valve station](#valve-station)
+  * [Pump station](#pump-station)
+  * [Process control - Filling Tank T1](#process-control--filling-tank-t1)
+  * [Process control - Transfer from Tank T1 to Tank T2](#process-control--transfer-from-tank-t1-to-tank-t2)
+  * [Process control - Dosing chemicals](#process-control--dosing-chemicals)
+  * [Process control - Emptying Tank T2](#process-control--emptying-tank-t2)
 
 ## Heading
 
@@ -143,7 +147,7 @@ This is an h1 heading
 
 ##### The chemical will be dosed into tank T2 when the pH level is less than 7 after the liquid has been transferred from T1. 
 #
-- ### Process control – Dosing chemicals
+- ### Process control – Emptying Tank T2
 #
 ![N|Solid](https://i.ibb.co/ZMKK8JY/15.png)
 #
