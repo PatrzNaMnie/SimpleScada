@@ -23,6 +23,7 @@
 
 
 ## User Manual - EN
+[User Manual](https://github.com/PatrzNaMnie/SimpleScada/blob/master/UserManual.md)
 #
 ## Instrukcja Obłusgi - PL
 #
