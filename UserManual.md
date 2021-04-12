@@ -2,7 +2,7 @@
 
 # User Manual
 #
-#Table of Contents
+## Table of Contents
 
 - [Requirements](#requirements)
 - [Variables](#variables)
