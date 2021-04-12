@@ -543,6 +543,11 @@
             </Rectangle.Fill>
         </Rectangle>
         <Label Content="Process control" HorizontalAlignment="Left" Height="42" Margin="716,48,0,0" VerticalAlignment="Top" Width="182" FontSize="24" FontWeight="Bold"/>
+        <Label Content="Valve UV__1" HorizontalAlignment="Left" Height="28" Margin="71,142,0,0" VerticalAlignment="Top" Width="68"/>
+        <Label Content="Pump P__1" HorizontalAlignment="Left" Height="28" Margin="232,417,0,0" VerticalAlignment="Top" Width="63"/>
+        <Label Content="Valve UV__2" HorizontalAlignment="Left" Height="28" Margin="593,426,0,0" VerticalAlignment="Top" Width="68"/>
+        <Label Content="Pump P__2" HorizontalAlignment="Left" Height="28" Margin="997,616,0,0" VerticalAlignment="Top" Width="63"/>
+        <Label Content="Pump P__3" HorizontalAlignment="Left" Height="28" Margin="1025,433,0,0" VerticalAlignment="Top" Width="63"/>
 
 
     </Grid>
