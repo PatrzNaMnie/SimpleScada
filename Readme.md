@@ -6,11 +6,8 @@
 
 ## Overview
 ##### SimpleScada is a combination of supervision and data collection system and HMI. Program includes the main functions of scada systems, such as process visualization, control, alarming, data collection and archiving.
-#
 ##### To exchange data with a real PLC controller used S7NetPlus Library, which allows to communicate with Siemens PLC devices.
-#
 ##### Due to the fact that the program enables the visualization of one specific process, the repository files also contain a program for the S7-300 Siemens series PLC controller, which implements an exemplary technological process.
-#
 ##### Communication with the database is based on the Entity Framework. Historical alarms and measurement data such as flow, fluid level or pH are transferred to database on Azure Cloud. The program also includes a simple CRUD operation to create, read, edit and delete users. The visualization of the collected data on the Charts was created by using the Live-Charts library.
 #
 ## Features
@@ -20,8 +17,16 @@
 - Alarming and collecting historical alarms
 - Data collection and archiving
 - Data exchange with database on Azure Cloud
-
-
+#
+## Technologies
+- WPF/XAML
+- Entity Framework
+# 
+## Libraries
+- S7NetPlus
+- Live-Charts
+- ExcelMapper
+#
 ## User Manual - EN
 [User Manual](https://github.com/PatrzNaMnie/SimpleScada/blob/master/UserManual.md)
 #
