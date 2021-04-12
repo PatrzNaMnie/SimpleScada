@@ -1,4 +1,4 @@
-![N|Solid](https://i.ibb.co/9tpTRxB/Simple-Scada.png)
+
 
 # User Manual
 
