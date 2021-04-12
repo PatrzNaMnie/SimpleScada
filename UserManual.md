@@ -5,8 +5,15 @@
 - [#Requirements](#requirements)
 - [#Variables](#variables)
 - [#Screens](#screens)
-  * [Sub-heading](#sub-heading)
-    + [Sub-sub-heading](#sub-sub-heading)
+  * [Main-screen](#main-screen)
+  * [Home](#home)
+  * [Trends](#trends)
+  * [Alarm-List](#alarm-list)
+  * [Historical-alarms](#historical-alarms)
+  * [Login-panel](#login-panel)
+  * [Administration-panel](#administration-panel)
+  * [Valve-station](#valve-station)
+  * [Pump-station](#pump-station)
 
 ## Heading
 
