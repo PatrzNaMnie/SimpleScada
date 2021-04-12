@@ -21,10 +21,7 @@
   * [Process control - Dosing chemicals](#process-control--dosing-chemicals)
   * [Process control - Emptying Tank T2](#process-control--emptying-tank-t2)
 
-## Heading
-
-This is an h1 heading
-
+#
 
 ## Requirements 
 ##### SimpleScad cannot start without being connected to a real PLC that contains the appropriate control program. Tia Portal files with the appropriate program for the PLC controller are attached to the repository. 
