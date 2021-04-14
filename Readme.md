@@ -33,3 +33,4 @@
 ## Instrukcja Obłusgi - PL
 #
 ## Licence
+[Licence](https://github.com/PatrzNaMnie/SimpleScada/blob/master/Licence.md)
