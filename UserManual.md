@@ -32,7 +32,7 @@
 #
 ## Variables
 
-##### The list of variables is available in the repository. Access to list is available by opening the .xlsx file in the Variables folder. Variables List User Guide in progress. 
+##### The list of variables is available in the repository. Access to list is available by opening the .xlsx file in the Excel folder. Variables List User Guide in progress. 
 #
 ## Screens
 #
